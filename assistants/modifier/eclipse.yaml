@@ -12,6 +12,9 @@ eclipse:
       - --eclipse
       default: ~/workspace
       help: Specify your workspace other than ~/workspace.
+      gui_hints:
+        type: path
+
     path:
       snippet: common_args
 

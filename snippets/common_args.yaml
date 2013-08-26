@@ -18,6 +18,9 @@ args:
       [default_iff_used, ~/workspace]
     nargs:
       '?'
+    gui_hints:
+      type: path
+      default: ~/workspace
 
   github:
     flags:
@@ -37,6 +40,9 @@ args:
       'Specify path to you project (defaults to current working directory if not used).'
     nargs:
       '?'
+    gui_hints:
+      type: path
+      default: $(pwd)
 
   # for Python assistants that want to allow using virtualenv
   venv:
