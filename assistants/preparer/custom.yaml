@@ -1,5 +1,4 @@
 custom:
-  role: preparer
   fullname: Custom Project
   description: Set up environment for developing custom project previously created with Devassistant.
 

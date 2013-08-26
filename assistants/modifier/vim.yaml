@@ -2,7 +2,6 @@ vim:
   fullname: Vim 
   description: This assistant can set up Vim for various programming languages.
     Just run it in the projects directory.
-  role: modifier
 
   args:
     path:

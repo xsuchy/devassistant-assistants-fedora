@@ -2,7 +2,6 @@ eclipse:
   fullname: Eclipse import assistant
   description: This assistant can import already created project into Eclipse.
     Just run it in the projects directory.
-  role: modifier
 
   args:
     # using snippet doesn't pay of here, as we would need to override
