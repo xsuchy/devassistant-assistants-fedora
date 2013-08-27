@@ -1,5 +1,5 @@
 vim:
-  fullname: Vim 
+  fullname: Vim Setup
   description: This assistant can set up Vim for various programming languages.
     Just run it in the projects directory.
 

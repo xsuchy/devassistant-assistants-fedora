@@ -1,5 +1,5 @@
 eclipse:
-  fullname: Eclipse import assistant
+  fullname: Eclipse Import
   description: This assistant can import already created project into Eclipse.
     Just run it in the projects directory.
 
