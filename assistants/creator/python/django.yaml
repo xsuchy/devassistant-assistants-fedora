@@ -57,6 +57,7 @@ django:
   - cl: sed -i "1i\import os\n" "$basename/$basename/settings.py"
   - cl: sed -i "2i\BASE_DIR = os.path.join(os.path.dirname(__file__), '..')\n" "$basename/$basename/settings.py"
   - cl: sed -i "s|'NAME'\(.\) ''|'NAME'\1 os.path.join(BASE_DIR, 'db.sqlite3')|" "$basename/$basename/settings.py"
+  - cl: chmod +x "$basename/manage.py"
   - dda_c: $basename
   - cl: cd "$basename"
   - if defined $vim:

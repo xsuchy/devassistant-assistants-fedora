@@ -60,6 +60,7 @@ flask:
   - cl: cd "$basename"
   - cl: mkdir -p "$basename/static" "$basename/templates"
   - cl: cp *managepy .
+  - cl: chmod +x manage.py
   - cl: sed -i "s|NAME|$basename|" manage.py
   - cl: cp *initpy "$basename"
   - cl: cp *indexhtml "$basename/templates/"
