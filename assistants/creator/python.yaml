@@ -4,6 +4,3 @@ python:
 
   dependencies:
   - rpm: ['python']
-
-  dependencies_vim:
-  - call: vim.dependencies_python
