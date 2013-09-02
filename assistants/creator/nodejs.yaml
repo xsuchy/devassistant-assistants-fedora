@@ -4,7 +4,3 @@ nodejs:
 
   dependencies:
   - rpm: ['nodejs', 'npm']
-
-  args:
-    name:
-      snippet: common_args
