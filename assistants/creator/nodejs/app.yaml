@@ -76,7 +76,7 @@ appjs:
     - rpm: ['nodejs-uid-number']
     - rpm: ['nodejs-which']
     - rpm: ['v8', 'v8-devel']
-    - npm: ['glob']
+    #- npm: ['glob']
 
   dependencies_vim:
   - call: vim.dependencies
@@ -89,23 +89,18 @@ appjs:
       snippet: common_args
 
   files:
-    gitignore: &gitignore
-      source: nodejs/.gitignore
     appnodejs: &appnodejs
-      source: nodejs/app.js
+      source: nodejs
 
   run:
   - $dirname: $(dirname "$name")
   - $basename: $(basename "$name")
   - if $(test -d "$name"):
     - log_e: '$name already exists, cannot proceed.'
-  - cl: mkdir -p "$dirname"
-  - cl: cd "$dirname"
-  - log_i: 'Creating Node.JS project $basename in $dirname ...'
-  - cl: django-admin startproject "$basename"
+  - cl: cp -r *appnodejs $basename
   - dda_c: $basename
   - cl: cd "$basename"
-  - cl: cp *gitignore .
+  - log_i: 'Creating Node.JS project $basename in $dirname ...'
   - call: git_init_add_commit
   - if defined $github:
     - github: create_and_push
