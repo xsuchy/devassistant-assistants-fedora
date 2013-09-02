@@ -1,0 +1,10 @@
+nodejs:
+  fullname: Node.JS
+  description: This is base Node.JS assistant, you have to choose a specific project type.
+
+  dependencies:
+  - rpm: ['nodejs', 'npm']
+
+  args:
+    name:
+      snippet: common_args
