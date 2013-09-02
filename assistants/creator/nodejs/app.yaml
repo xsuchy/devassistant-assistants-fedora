@@ -97,13 +97,13 @@ appjs:
   - $basename: $(basename "$name")
   - if $(test -d "$name"):
     - log_e: '$name already exists, cannot proceed.'
-  - cl: cp -r *appnodejs $basename
-  - dda_c: $basename
+  - cl: cp -r *appnodejs "$basename"
+  - dda_c: "$basename"
   - cl: cd "$basename"
   - log_i: 'Creating Node.JS project $basename in $dirname ...'
   - call: git_init_add_commit
   - if defined $github:
     - github: create_and_push
   - log_i: 'Node.JS project $basename in $dirname has been created.'
-  - log_i: 'To run the application use: node $basename.js'
+  - log_i: 'To run the application use: node app.js'
   - log_i: 'For more information about Node.JS project visit https://nodejs.org'
