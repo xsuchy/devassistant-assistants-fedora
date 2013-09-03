@@ -1,6 +1,6 @@
 appjs:
   fullname: Node.JS application
-  description: 'Node.JS application will help you create a basic Node.JS project and install its dependencies.'
+  description: 'Node.JS assistant will help you create a basic Node.JS application and install its dependencies.'
 
   dependencies:
     - rpm: ['node-gyp']
