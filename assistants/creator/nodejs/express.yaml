@@ -1,6 +1,6 @@
-appjs:
-  fullname: Node.JS application
-  description: 'Node.JS application will help you create a basic Node.JS project and install its dependencies.'
+expressjs:
+  fullname: Express.JS - web framework
+  description: 'Express.JS assistant will help you create a basic web application with Express framework and install its dependencies.'
 
   dependencies:
     - rpm: ['node-gyp']
@@ -103,27 +103,19 @@ appjs:
     github:
       snippet: common_args
 
-  files:
-    gitignore: &gitignore
-      source: nodejs/.gitignore
-    appnodejs: &appnodejs
-      source: nodejs/app.js
-
   run:
   - $dirname: $(dirname "$name")
   - $basename: $(basename "$name")
   - if $(test -d "$name"):
     - log_e: '$name already exists, cannot proceed.'
-  - cl: mkdir -p "$dirname"
-  - cl: cd "$dirname"
-  - log_i: 'Creating Node.JS project $basename in $dirname ...'
-  - cl: django-admin startproject "$basename"
+  - log_i: 'Creating Express.JS project $basename in $dirname ...'
+  - cl: express --css stylus --ejs "$basename"
   - dda_c: $basename
   - cl: cd "$basename"
-  - cl: cp *gitignore .
+  - cl: npm install
   - call: git_init_add_commit
   - if defined $github:
     - github: create_and_push
-  - log_i: 'Node.JS project $basename in $dirname has been created.'
-  - log_i: 'To run the application use: node $basename.js'
-  - log_i: 'For more information about Node.JS project visit https://nodejs.org'
+  - log_i: 'Express.JS project $basename in $dirname has been created.'
+  - log_i: 'To run the application use: node app'
+  - log_i: 'For more information about Express.JS project visit http://expressjs.com'
