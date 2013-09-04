@@ -1,5 +1,5 @@
 cpp:
-  fullname: C++ Language Tool
+  fullname: C++
 
   dependencies:
   - rpm: ['gcc-c++','glibc-devel', 'automake', 'autoconf','valgrind','gdb','ddd','strace', 'vim-enhanced', 'vim-X11']

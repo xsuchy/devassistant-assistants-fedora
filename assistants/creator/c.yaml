@@ -1,5 +1,5 @@
 c:
-  fullname: C Language Tool
+  fullname: C
 
   dependencies:
   - rpm: ['gcc', 'glibc-devel', 'automake', 'autoconf','valgrind','gdb','ddd','strace', 'vim-enhanced', 'vim-X11']
