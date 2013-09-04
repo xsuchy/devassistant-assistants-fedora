@@ -1,6 +1,6 @@
 devassistant-assistants-fedora
 ==============================
 
-Assistants for Devassistant on Fedora.
-The main devassistant repo: https://www.github.com/bkabrda/devassistant
-Documentation: https://developer-assistant.readthedocs.org
+Assistants for DevAssistant on Fedora.
+The main DevAssistant repo: https://www.github.com/bkabrda/devassistant
+Documentation: http://doc.devassistant.org

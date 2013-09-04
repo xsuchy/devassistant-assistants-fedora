@@ -1,6 +1,6 @@
 custom:
   fullname: Custom Project
-  description: Set up environment for developing custom project previously created with Devassistant.
+  description: Set up environment for developing custom project previously created with DevAssistant.
 
   args:
     url:
