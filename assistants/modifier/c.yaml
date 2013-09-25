@@ -1,0 +1,53 @@
+eclipse:
+  fullname: C/C++ library import
+  description: This assistant can import libraries into already created project.
+    Just run it in the projects directory and specify which library you want to add and check
+
+  args:
+    path:
+      snippet: common_args
+
+    header:
+      flags:
+      - --header
+      help:
+          Specify C/C++ header file to include into autotools of your already created project
+
+    library:
+      flags:
+      - -l
+      - --library
+      help:
+          Specify library to include into autools of your already created project.
+
+    function:
+      flags:
+      - -f
+      - --function
+      help:
+          Specify fuction defined by library. It is needed for checking
+
+  pre_run:
+  - if $path:
+    - cl: cd "$path"
+
+  run:
+  - log_i: library "$library" will be added into project
+  - if "$library":
+      - if $(echo "$library" | grep "^lib"):
+          - log_e: Library has to be without lib name at the begging
+      - log_i: Adding library "$library" to autotools
+      - if not "$function":
+          - log_e: You have to provide at least one function defined by library
+      - if $(grep "AC_CHECK_LIB" configure.ac| grep $library | grep $function):
+          - log_i: Library and function are already included
+      - else:
+          - log_i: configure.ac does not contain specified library and function
+          - cl: sed -i "s|\(# DEFINE YOUR OWN LIBRARY CHECK.*\)|\1\\nAC_CHECK_LIB([$library],[$function], ,[AC_MSG_ERROR(You need to have lib$library)])|" "configure.ac"
+  - if "$header":
+      - log_i: Adding header file "$header" to autotools
+      - if $(grep $header configure.ac):
+          - log_i: Header "$header" is already in configure.ac
+      - else:
+          - log_i: Header is adding to configure.ac
+          - cl: sed -i "s|\(# DEFINE YOUR OWN HEADERS CHECK.*\)|\1\\nAC_CHECK_HEADERS([$header], , [AC_MSG_ERROR(Could not find $header)])|" "configure.ac"
