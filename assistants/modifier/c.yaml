@@ -35,7 +35,7 @@ c:
   - if "$library":
       - log_i: Library "$library" will be added into configure.ac
       - if $(echo "$library" | grep "^lib"):
-          - log_e: Library has to be without lib name at the beginning
+          - $library: $(echo "$library" | sed 's/^lib//')
       - log_i: Adding library "$library" into configure.ac
       - if not "$function":
           - log_e: You have to provide at least one function defined within library
@@ -51,3 +51,11 @@ c:
       - else:
           - cl: sed -i "s|\(# DEFINE YOUR OWN HEADERS CHECK.*\)|\1\\nAC_CHECK_HEADERS([$header], , [AC_MSG_ERROR(Could not find $header)])|" "configure.ac"
           - log_i: Header was added into configure.ac
+  - log_i: Project will be build up with new configure.ac
+  - log_i: Calling autoreconf
+  - cl: autoreconf -vfi
+  - log_i: Calling configure script
+  - cl: ./configure
+  - log_i: Building project by make command
+  - cl: make
+
