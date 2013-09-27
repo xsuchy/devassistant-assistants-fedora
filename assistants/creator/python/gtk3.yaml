@@ -39,6 +39,7 @@ gtk3:
   - else:
     - cl_i: cp -r *pygtksources "$name"
   - cl: cd "$name"
+  - dda_c: .
   - if defined $vim:
     - call: vim.run
   - if $eclipse:
