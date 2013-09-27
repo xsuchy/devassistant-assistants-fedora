@@ -58,10 +58,8 @@ files:
 
 run_c:
 - log_i: 'Creating eclipse project from command line'
-- cl: cd "$name"
-- cl_f: make clean
 - cl: mkdir -p "$eclipse/$name"
-- if not $(ls "$name/.project"):
+- if not $(ls ".project"):
   - log_i: 'Project was not imported to eclipse environment yet'
   - cl: cp *dot_eclipseproject_c .
   - cl: cp *dot_cproject_c .
@@ -82,10 +80,8 @@ run_c:
 
 run_cpp:
 - log_i: 'Creating eclipse project from command line'
-- cl: cd "$name"
-- cl_f: make clean
 - cl: mkdir -p "$eclipse/$name"
-- if not $(ls "$name/.project"):
+- if not $(ls ".project"):
   - log_i: 'Project was not imported to eclipse environment yet'
   - cl: cp *dot_eclipseproject_cpp .
   - cl: cp *dot_cproject_cpp .
