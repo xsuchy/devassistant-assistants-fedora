@@ -38,8 +38,8 @@ args:
     - --path
     help:
       'Specify path to you project (defaults to current working directory if not used).'
-    nargs:
-      '?'
+    nargs: '?'
+    default: .
     gui_hints:
       type: path
       default: $(pwd)

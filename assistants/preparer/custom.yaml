@@ -12,15 +12,9 @@ custom:
       required:
         True
     path:
-      flags:
-      - -p
-      - --path
+      snippet: common_args
       help:
         Path where to checkout the repo (will be created if it does not exist).
-      required: False
-      default: .
-      gui_hints:
-        type: path
 
   run:
     - if not $(test -e "$path"):
