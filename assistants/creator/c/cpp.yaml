@@ -2,7 +2,7 @@ cpp:
   fullname: C++
 
   dependencies:
-  - rpm: ['gcc-c++','glibc-devel', 'automake', 'autoconf','valgrind','gdb','ddd','strace', 'vim-enhanced', 'vim-X11']
+  - rpm: ['gcc-c++',]
 
   dependencies_build:
   - rpm: ['rpm-build','mock','eclipse-rpm-editor']
@@ -36,7 +36,7 @@ cpp:
 
   files:
     cppsources: &cppsources
-      source: cpp/
+      source: c/cpp/
 
   run:
   - $dirname: $(dirname "$name")
