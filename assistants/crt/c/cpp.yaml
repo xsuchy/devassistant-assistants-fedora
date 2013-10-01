@@ -83,7 +83,6 @@ cpp:
     - log_i: 'Creating RPM from tarball'
     - cl_f: rpmbuild -ba "$basename.spec"
     - cl: cd "$dirname"
-  - cl: cd ../
   - if $eclipse:
     - call: eclipse.run_cpp
   - if defined $github:
