@@ -19,15 +19,15 @@ maven:
 
   files:
     mavenexample: &mavenexample
-      source: crt/java/maven/
+      source: .
     classpath: &classpath
-      source: crt/java/maven/.classpath
+      source: .classpath
     eclipseproject: &eclipseproject
-      source: crt/java/maven/.eclipseproject
+      source: .eclipseproject
     runscript: &runscript
-      source: crt/java/maven/run
+      source: run
     pom: &pom
-      source: crt/java/maven/pom.xml
+      source: pom.xml
 
   run:
   - $dirname: $(dirname "$name")

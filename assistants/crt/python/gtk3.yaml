@@ -26,9 +26,9 @@ gtk3:
 
   files:
     gitignore: &gitignore
-      source: crt/python/.gitignore
+      source: ../.gitignore
     pygtksources: &pygtksources
-      source: crt/python/gtk3
+      source: .
 
   run:
   - $dirname: $(dirname "$name")

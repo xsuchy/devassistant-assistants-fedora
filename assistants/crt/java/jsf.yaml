@@ -21,19 +21,19 @@ jsf:
 
   files:
     jsfexample: &jsfexample
-      source: crt/java/jsf/
+      source: .
     classpath: &classpath
-      source: crt/java/jsf/.classpath
+      source: .classpath
     eclipseproject: &eclipseproject
-      source: crt/java/jsf/.eclipseproject
+      source: .eclipseproject
     runscript: &runscript
-      source: crt/java/jsf/run
+      source: run
     spec: &spec
-      source: crt/java/jsf/devassistant-jsf-example.spec
+      source: devassistant-jsf-example.spec
     gitignore: &gitignore
-      source: crt/java/jsf/.gitignore
+      source: .gitignore
     pom: &pom
-      source: crt/java/jsf/pom.xml
+      source: pom.xml
 
 
   run:

@@ -19,9 +19,9 @@ args:
 
 files:
   vim_update: &vim_update
-    source: mod/vim/vim_update.sh
+    source: vim_update.sh
   vimrc: &vimrc
-    source: mod/vim/vimrc
+    source: vimrc
 
 run:
   - log_i: "Settings VIM environment"
