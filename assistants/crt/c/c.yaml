@@ -36,7 +36,7 @@ c:
 
   files:
     csources: &csources
-      source: c/c/
+      source: crt/c/c/
 
   run:
   - $dirname: $(dirname "$name")

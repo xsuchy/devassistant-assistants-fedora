@@ -34,13 +34,13 @@ flask:
 
   files:
     gitignore: &gitignore
-      source: python/.gitignore
+      source: crt/python/.gitignore
     initpy: &initpy
-      source: python/flask/__init__.py
+      source: crt/python/flask/__init__.py
     indexhtml: &indexhtml
-      source: python/flask/index.html
+      source: crt/python/flask/index.html
     managepy: &managepy
-      source: python/flask/manage.py
+      source: crt/python/flask/manage.py
 
   run:
   - $dirname: $(dirname "$name")

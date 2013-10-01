@@ -37,13 +37,13 @@ lamp:
 
   files:
     phpfiles: &phpfiles
-      source: php/lamp/sample_page/*
+      source: crt/php/lamp/sample_page/*
     create_db: &create_db
-      source: php/lamp/create_database.php
+      source: crt/php/lamp/create_database.php
     create_table: &create_table
-      source: php/lamp/create_table.php
+      source: crt/php/lamp/create_table.php
     lamp_config: &lamp_config
-      source: php/lamp/apache_config.sh
+      source: crt/php/lamp/apache_config.sh
 
   run:
   - $dirname: $(dirname "$name")

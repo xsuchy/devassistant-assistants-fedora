@@ -29,15 +29,15 @@ lib:
 
   files:
     gitignore: &gitignore
-      source: python/.gitignore
+      source: crt/python/.gitignore
     setuppy: &setuppy
-      source: python/lib/setup.py
+      source: crt/python/lib/setup.py
     license: &license
-      source: python/lib/LICENSE
+      source: crt/python/lib/LICENSE
     manifestin: &mainfestin
-      source: python/lib/MANIFEST.in
+      source: crt/python/lib/MANIFEST.in
     readmerst: &readmerst
-      source: python/lib/README.rst
+      source: crt/python/lib/README.rst
 
   run:
   - $dirname: $(dirname "$name")

@@ -30,31 +30,31 @@ args:
 
 files:
   dot_eclipseproject_c: &dot_eclipseproject_c
-    source: c/.eclipseproject
+    source: crt/c/.eclipseproject
   dot_cproject_c: &dot_cproject_c
-    source: c/.cproject
+    source: crt/c/.cproject
   dot_autotools_c: &dot_autotools_c
-    source: c/.autotools
+    source: crt/c/.autotools
   dot_eclipseproject_cpp: &dot_eclipseproject_cpp
-    source: cpp/.eclipseproject
+    source: crt/cpp/.eclipseproject
   dot_cproject_cpp: &dot_cproject_cpp
-    source: cpp/.cproject
+    source: crt/cpp/.cproject
   dot_autotools_cpp: &dot_autotools_cpp
-    source: cpp/.autotools
+    source: crt/cpp/.autotools
   dot_project_python: &dot_project_python
-    source: python/.project
+    source: crt/python/.project
   dot_pydevproject_python: &dot_pydevproject_python
-    source: python/.pydevproject
+    source: crt/python/.pydevproject
   dot_project_django: &dot_project_django
-    source: python/django/.project
+    source: crt/python/django/.project
   dot_pydevproject_django: &dot_pydevproject_django
-    source: python/django/.pydevproject
+    source: crt/python/django/.pydevproject
   dot_eclipseproject_jsf: &dot_eclipseproject_jsf
-    source: java/jsf/.eclipseproject
+    source: crt/java/jsf/.eclipseproject
   dot_eclipseproject_maven: &dot_eclipseproject_maven
-    source: java/maven/.eclipseproject
+    source: crt/java/maven/.eclipseproject
   dot_eclipseproject_php: &dot_eclipseproject_php
-    source: php/.eclipseproject
+    source: crt/php/.eclipseproject
 
 run_c:
 - log_i: 'Creating eclipse project from command line'

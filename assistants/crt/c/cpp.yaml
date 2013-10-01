@@ -36,7 +36,7 @@ cpp:
 
   files:
     cppsources: &cppsources
-      source: c/cpp/
+      source: crt/c/cpp/
 
   run:
   - $dirname: $(dirname "$name")

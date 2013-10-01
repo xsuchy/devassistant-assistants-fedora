@@ -32,7 +32,7 @@ django:
 
   files:
     gitignore: &gitignore
-      source: python/.gitignore
+      source: crt/python/.gitignore
 
   run:
   - $dirname: $(dirname "$name")

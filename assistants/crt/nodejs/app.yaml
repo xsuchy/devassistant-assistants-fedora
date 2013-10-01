@@ -90,7 +90,7 @@ appjs:
 
   files:
     appnodejs: &appnodejs
-      source: nodejs
+      source: crt/nodejs
 
   run:
   - $dirname: $(dirname "$name")
