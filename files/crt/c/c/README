@@ -34,26 +34,14 @@ Steps for compilation and making binaries are following:
 3) Next step is to tell autotools build my my_test.c file. It is done so that
 new row has to be added in Makefile.am
      my_test_SOURCES = my_test.c 
-4) If your program depends on some library like libssl then add row like
-    my_test_LDADD= -lssl
-  and during compilation your program will be build with then library
-5) If you would like to add checking whether some headers are on target system
-    then add following row into configure.ac file like in our example
-    AC_CHECK_HEADERS([openssl/ssl.h])
-5) If you would like to add checking whether some library contains function then add 
-    this row into configure.ac file like in our example
-    AC_CHECK_LIB(ssl, <function_name>)
-6) Now we are prepared for building sources. Go to directory with your project name and run command
-   autoreconf --install
-   This step will create ./configure script and all neccessary makefiles
-7) Now run command ./configure which is needed for checking whether all header files, libraries
-     etc are available on the system
-8)  Run make for testing whether my_test.c is compilable without errors.
-    In case that some errors occurs solve them.
-    If some library is missing them we need to add them into configure.ac like was mentioned
-    in step 5)
+4) If your program depends on some library like libssl then call devassistant with those parameters
+    da mod c lib -l libssl -f <function_from_libssl> -p <path_to_your_project>
+  and during compilation your program will be build with this library
+5) If you would like to add check whether some header is on target system call devassistant 
+    with those parameters
+    da mod c header --header <your_header.h> -p <path_to_your_project>
 
-9) When all project is buildable and no errors occurs then you can add you binary
+6) When project is buildable and no errors occurs then you can add you binary
     to RPM so that you will modify <project_name>.spec file stored in your project name directory
     In that file add your directory in %install section so that new row will be add like:
 
@@ -64,11 +52,8 @@ new row has to be added in Makefile.am
 
     %{_bindir}/my_test
 
-10) Update also changelog section so that Package Guidelines will be clear
+7) Update also changelog section so that Package Guidelines will be clear
 
-11) For building RPM package leave your project name directory and run command
+8) For building RPM package leave your project name directory and run command
 
-    devassistant c -n <your_project_name> -b <build_name>
-
-    build_name can be obtain from mock -r command
-
+    da crt c c -n <your_project_name> -b 
