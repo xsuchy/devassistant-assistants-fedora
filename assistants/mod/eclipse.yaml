@@ -35,6 +35,10 @@ eclipse:
   - if $path:
     - cl: cd "$path"
 
+  run:
+  # if this method runs, it means we don't know how to import eclipse
+  - log_w: "Don't know how to import your project into Eclipse"
+
   run_python:
   - call: eclipse.run_python
 
