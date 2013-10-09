@@ -1,6 +1,10 @@
 custom:
   fullname: Custom Project
-  description: Set up environment for developing custom project previously created with DevAssistant.
+  description:
+    Only use this with projects whose upstream you trust, since the project
+    can specify arbitrary custom commands that will run on your machine.
+    The custom assistant sets up environment for developing custom project previously
+    created with DevAssistant.
 
   args:
     url:
