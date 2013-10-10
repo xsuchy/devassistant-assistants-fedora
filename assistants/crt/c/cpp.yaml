@@ -79,7 +79,7 @@ cpp:
     - cl: cp "$basename-0.0.tar.gz" ~/rpmbuild/SOURCES
     - cl: cp "$basename.spec" ~/rpmbuild/SPECS
     - cl: cd ~/rpmbuild/SPECS
-    - cl_f: sudo yum-builddep "~/rpmbuild/SPECS/$basename.spec"
+    - cl_f: pkexec yum-builddep "~/rpmbuild/SPECS/$basename.spec"
     - log_i: 'Creating RPM from tarball'
     - cl_f: rpmbuild -ba "$basename.spec"
     - cl: cd "$dirname"
@@ -87,4 +87,4 @@ cpp:
     - call: eclipse.run_cpp
   - if defined $github:
     - log_i: "Push to GitHub repository"
-    - github: create_and_push
+    - le github: create_and_push

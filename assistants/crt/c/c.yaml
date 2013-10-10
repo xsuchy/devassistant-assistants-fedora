@@ -79,7 +79,7 @@ c:
     - cl: cp "$basename-0.0.tar.gz" ~/rpmbuild/SOURCES
     - cl: cp "$basename.spec" ~/rpmbuild/SPECS
     - cl: cd ~/rpmbuild/SPECS
-    - cl_i: sudo yum-builddep "~/rpmbuild/SPECS/$basename.spec"
+    - cl_i: pkexec yum-builddep "~/rpmbuild/SPECS/$basename.spec"
     - log_i: 'Creating RPM from tarball'
     - cl_i: rpmbuild -ba "$basename.spec"
     - cl_f: cd "$dirname"
