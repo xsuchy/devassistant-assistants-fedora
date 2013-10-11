@@ -4,9 +4,9 @@ django:
 
   dependencies:
   - if $venv:
-    - rpm: ['python-virtualenv']
+    - rpm: ['python${py3}-virtualenv']
   - else:
-    - rpm: ['python-django']
+    - rpm: ['python${py3}-django']
 
   dependencies_eclipse:
   - call: eclipse.dependencies_python
@@ -30,6 +30,9 @@ django:
     venv:
       snippet: common_args
 
+    py3:
+      snippet: common_args
+
   files:
     gitignore: &gitignore
       source: ../.gitignore
@@ -46,11 +49,18 @@ django:
     - cl: cd "$basename"
     - log_i: 'Installing Django into virtual environment ...'
     - cl_i: source bin/activate && pip install django
+
+  # create the project using proper form of django-admin
   - log_i: 'Creating Django project $basename in $dirname ...'
   - if $venv:
     - cl: source bin/activate && django-admin.py startproject "$basename"
   - else:
-    - cl: django-admin startproject "$basename"
+    - if $py3: # also replace the python shebang for Python 3
+      - cl: python3-django-admin startproject "$basename"
+      - cl: sed -i "s|env python|env python3|" "${basename}/manage.py"
+    - else:
+      - cl: django-admin startproject "$basename"
+
   # make modifications to settings.py so that project can be run immediately
   - cl: sed -i "s|django.db.backends.|django.db.backends.sqlite3|" "$basename/$basename/settings.py"
   # \(.\) is workaround for ":", which cannot be here because it would mean yaml error
@@ -59,6 +69,7 @@ django:
   - cl: sed -i "s|'NAME'\(.\) ''|'NAME'\1 os.path.join(BASE_DIR, 'db.sqlite3')|" "$basename/$basename/settings.py"
   - cl: chmod +x "$basename/manage.py"
   - dda_c: $basename
+
   - cl: cd "$basename"
   - if defined $vim:
     - call: vim.run
@@ -68,6 +79,7 @@ django:
   - call: git_init_add_commit
   - if defined $github:
     - github: create_and_push
+
   - log_i: 'Django project $basename in $dirname has been created.'
   - if $venv:
     - log_i: 'To switch to the created virtualenv, use "source ${dirname}/${basename}/bin/activate"'

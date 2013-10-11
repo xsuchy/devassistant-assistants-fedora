@@ -54,3 +54,12 @@ args:
       store_true
     help:
       'Use virtualenv to set up project and install dependencies.'
+
+  # for Python assistants that want to support Python 3
+  py3:
+    flags:
+    - --py3
+    action: store_const
+    const: 3
+    default: ''
+    help: 'Use Python 3 instead of Python 2.'
