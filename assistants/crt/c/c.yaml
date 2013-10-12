@@ -2,6 +2,7 @@ c:
   fullname: C
 
   dependencies:
+  - call: super.dependencies
   - rpm: ['gcc'] 
 
   dependencies_build:

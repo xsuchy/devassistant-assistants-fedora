@@ -3,6 +3,7 @@ lib:
   description: 'Lib assistant will help you create a custom Python library.'
 
   dependencies:
+  - call: super.dependencies
   - if $venv:
     - rpm: ['python-virtualenv']
   - else:

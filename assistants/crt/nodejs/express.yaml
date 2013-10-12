@@ -3,6 +3,7 @@ expressjs:
   description: 'Express.JS assistant will help you create a basic web application with Express framework and install its dependencies.'
 
   dependencies:
+    - call: super.dependencies
     - rpm: ['node-gyp']
     - rpm: ['nodejs-abbrev']
     - rpm: ['nodejs-ansi']

@@ -3,6 +3,7 @@ flask:
   description: 'Flask assistant will help you create a basic Flask project and install its dependencies.'
 
   dependencies:
+  - call: super.dependencies
   - if $venv:
     - rpm: [python-virtualenv]
   - else:

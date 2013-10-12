@@ -2,6 +2,7 @@ cpp:
   fullname: C++
 
   dependencies:
+  - call: super.dependencies
   - rpm: ['gcc-c++',]
 
   dependencies_build:

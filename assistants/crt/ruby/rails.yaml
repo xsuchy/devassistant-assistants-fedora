@@ -3,6 +3,7 @@ rails:
   description: 'Ruby on Rails assistant will help you create a basic web application using Ruby on Rails framework.'
 
   dependencies:
+  - call: super.dependencies
   - rpm:
     - rubygem(rails)
     - rubygem(sqlite3)

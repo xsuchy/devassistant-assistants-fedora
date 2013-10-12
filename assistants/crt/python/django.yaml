@@ -3,6 +3,7 @@ django:
   description: 'Django assistant will help you create a basic Django project and install its dependencies.'
 
   dependencies:
+  - call: super.dependencies
   - if $venv:
     - rpm: ['python${py3}-virtualenv']
   - else:
