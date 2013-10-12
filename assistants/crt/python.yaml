@@ -3,4 +3,4 @@ python:
   description: This is base Python assistant, you have to choose a specific project type.
 
   dependencies:
-  - rpm: ['python']
+  - rpm: ['python${py3}']
