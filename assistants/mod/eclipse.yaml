@@ -33,6 +33,7 @@ eclipse:
   pre_run:
   - if $path:
     - cl: cd "$path"
+  - dda_r: .
 
   run:
   # if this method runs, it means we don't know how to import to eclipse

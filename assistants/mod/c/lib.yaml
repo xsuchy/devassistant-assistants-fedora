@@ -26,6 +26,7 @@ c_lib:
   pre_run:
   - if $path:
     - cl: cd "$path"
+  - dda_r: .
 
   run:
   - if "$library":
