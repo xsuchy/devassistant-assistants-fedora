@@ -41,7 +41,7 @@ jsf:
   - $dirname: $(dirname "$name")
   - $basename: $(basename "$name")
   - log_i: 'Creating simple JSF project'
-  - if $(test -d "$name"):
+  - if $(test -e "$name"):
     - log_e: '$name already exists, cannot proceed.'
   - cl: mkdir -p "$name"
   - $abspath: $(readlink -f "$name")

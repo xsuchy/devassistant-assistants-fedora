@@ -35,7 +35,7 @@ gtk3:
   - $dirname: $(dirname "$name")
   - $basename: $(basename "$name")
   - log_i: 'Creating GTK+ 3 project $basename in $dirname ...'
-  - if $(test -d "$name"):
+  - if $(test -e "$name"):
     - log_e: '$name already exists, cannot proceed.'
   - else:
     - cl_i: cp -r *pygtksources "$name"

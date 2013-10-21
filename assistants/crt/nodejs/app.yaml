@@ -96,7 +96,7 @@ appjs:
   run:
   - $dirname: $(dirname "$name")
   - $basename: $(basename "$name")
-  - if $(test -d "$name"):
+  - if $(test -e "$name"):
     - log_e: '$name already exists, cannot proceed.'
   - cl: cp -r *appnodejs "$basename"
   - dda_c: "$basename"

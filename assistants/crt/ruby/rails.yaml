@@ -27,7 +27,7 @@ rails:
   - $dirname: $(dirname "$name")
   - $basename: $(basename "$name")
   - log_i: 'Creating Ruby on Rails project $basename in $dirname ...'
-  - if $(test -d "$name"):
+  - if $(test -e "$name"):
     - log_e: '$name already exists, cannot proceed.'
   - cl: mkdir -p "$dirname"
   - cl: cd "$dirname"

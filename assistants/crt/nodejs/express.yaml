@@ -107,7 +107,7 @@ expressjs:
   run:
   - $dirname: $(dirname "$name")
   - $basename: $(basename "$name")
-  - if $(test -d "$name"):
+  - if $(test -e "$name"):
     - log_e: '$name already exists, cannot proceed.'
   - log_i: 'Creating Express.JS project $basename in $dirname ...'
   - cl: express --css stylus --ejs "$basename"

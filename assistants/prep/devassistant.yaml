@@ -25,8 +25,8 @@ devassistant:
     - if not $(test -e "$path"):
       - cl: mkdir -p "$path"
     - cl: cd "$path"
-    - if $(test -d devassistant):
-      - log_e: 'devassistant directory already exists in directory "$path", exiting'
+    - if $(test -e devassistant):
+      - log_e: 'devassistant directory/file already exists in directory "$path", exiting'
     - log_i: Getting DevAssistant sources ...
     - $git_output: $(git clone "$url")
     - if $(echo "$git_output" | grep "fatal"):
