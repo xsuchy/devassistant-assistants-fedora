@@ -3,7 +3,7 @@ rails:
   description: 'Ruby on Rails assistant will help you create a basic web application using Ruby on Rails framework.'
 
   dependencies:
-  - call: super.dependencies
+  - use: super.dependencies
   - rpm:
     - rubygem(rails)
     - rubygem(sqlite3)
@@ -15,13 +15,13 @@ rails:
 
   args:
     name:
-      snippet: common_args
+      use: common_args
 
     github:
-      snippet: common_args
+      use: common_args
 
     vim:
-      snippet: vim
+      use: vim
 
   run:
   - $dirname: $(dirname "$name")
@@ -37,8 +37,8 @@ rails:
   - dda_c: $basename
   - cl: cd "$basename"
   - if defined $vim:
-    - call: vim.run
-  - call: git_init_add_commit
+    - use: vim.run
+  - use: git_init_add_commit
   - if defined $github:
     - github: create_and_push
   - log_i: 'Ruby on Rails project $basename in $dirname has been created.'

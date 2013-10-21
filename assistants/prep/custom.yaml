@@ -16,7 +16,7 @@ custom:
       required:
         True
     path:
-      snippet: common_args
+      use: common_args
       help:
         Path where to checkout the repo (will be created if it does not exist).
 

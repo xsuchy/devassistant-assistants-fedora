@@ -5,16 +5,16 @@ vim:
 
   args:
     path:
-      snippet: common_args
+      use: common_args
 
   dependencies:
-  - call: vim
+  - use: vim
 
   dependencies_python:
-  - call: vim.dependencies_python
+  - use: vim.dependencies_python
 
   dependencies_perl:
-  - call: vim.dependencies_perl
+  - use: vim.dependencies_perl
 
 
   pre_run:
@@ -23,4 +23,4 @@ vim:
   - dda_r: .
 
   run:
-  - call: vim.run
+  - use: vim.run

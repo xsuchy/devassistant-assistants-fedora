@@ -2,23 +2,23 @@ jsf:
   fullname: Simple JavaServer Faces Project
 
   dependencies:
-  - call: super.dependencies
+  - use: super.dependencies
   - rpm: ['mojarra','jetty-server','jetty-webapp','tomcat-el-2.2-api','tomcat-jsp-2.2-api']
   - rpm: ['tomcat-servlet-3.0-api','maven-local','maven-war-plugin','maven-shade-plugin']
   - rpm: ['maven-resources-plugin','maven-clean-plugin','junit4']
 
   dependencies_eclipse:
-  - call: eclipse.dependencies_java
+  - use: eclipse.dependencies_java
 
   args:
     name:
-      snippet: common_args
+      use: common_args
 
     eclipse:
-      snippet: eclipse
+      use: eclipse
 
     github:
-      snippet: common_args
+      use: common_args
 
   files:
     jsfexample: &jsfexample
@@ -58,14 +58,14 @@ jsf:
   - cl: cd "${abspath}"
   # create local git repository
   - log_i: 'Creating git repository'
-  - call: git_init_add_commit
+  - use: git_init_add_commit
   # create tarball
   - log_i: 'Creating tarball'
   #- cl: git archive --format tar HEAD | gzip -9 > JSFexample.tar.gz
   - cl: tar czf devassistant-jsf-example.tar.gz src/ pom.xml run
   - log_i: 'Done'
   - if $eclipse:
-    - call: eclipse.run_java
+    - use: eclipse.run_java
   - if $github:
     - log_i: 'Push to GitHub repository'
     - github: create_and_push

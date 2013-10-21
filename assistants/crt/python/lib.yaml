@@ -3,33 +3,33 @@ lib:
   description: 'Lib assistant will help you create a custom Python library.'
 
   dependencies:
-  - call: super.dependencies
+  - use: super.dependencies
   - if $venv:
     - rpm: ['python-virtualenv']
   - else:
     - rpm: ['python-setuptools']
 
   dependencies_eclipse:
-  - call: eclipse.dependencies_python
+  - use: eclipse.dependencies_python
 
   dependencies_vim:
-  - call: vim.dependencies
+  - use: vim.dependencies
 
   args:
     name:
-      snippet: common_args
+      use: common_args
 
     eclipse:
-      snippet: eclipse
+      use: eclipse
 
     github:
-      snippet: common_args
+      use: common_args
 
     vim:
-      snippet: vim
+      use: vim
 
     venv:
-      snippet: common_args
+      use: common_args
 
   files:
     gitignore: &gitignore
@@ -65,11 +65,11 @@ lib:
   - cl: cp *setuppy .
   - cl: sed -i "s|NAME|$basename|" setup.py
   - if defined $vim:
-    - call: vim.run
+    - use: vim.run
   - if $eclipse:
-    - call: eclipse.run_python
+    - use: eclipse.run_python
   - cl: cp *gitignore .
-  - call: git_init_add_commit
+  - use: git_init_add_commit
   - if defined $github:
     - github: create_and_push
   - log_i: 'Library project $basename in $dirname has been created.'

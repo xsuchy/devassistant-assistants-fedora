@@ -2,21 +2,21 @@ cpp:
   fullname: C++
 
   dependencies:
-  - call: super.dependencies
+  - use: super.dependencies
   - rpm: ['gcc-c++',]
 
   dependencies_build:
   - rpm: ['rpm-build','mock','eclipse-rpm-editor']
 
   dependencies_eclipse:
-  - call: eclipse.dependencies_c
+  - use: eclipse.dependencies_c
 
   dependencies_vim:
-  - call: vim.dependencies
+  - use: vim.dependencies
 
   args:
     name:
-      snippet: common_args
+      use: common_args
 
     build:
       flags:
@@ -27,13 +27,13 @@ cpp:
       action:
         'store_true'
     vim:
-      snippet: vim
+      use: vim
 
     eclipse:
-      snippet: eclipse
+      use: eclipse
 
     github:
-      snippet: common_args
+      use: common_args
 
   files:
     cppsources: &cppsources
@@ -52,7 +52,7 @@ cpp:
     - cl: sed -i "s|CDevelopmentTool|$basename|" configure.ac
     - cl: mv cdevelopmenttool.spec "$basename.spec"
     - cl: sed -i "s|cdevelopmenttool|$basename|" "$basename.spec"
-    - call: git_init_add_commit
+    - use: git_init_add_commit
   - else:
     - cl: cd "$lowername"
     - log_i: 'Project already exists'  
@@ -71,7 +71,7 @@ cpp:
   - log_i: 'automake: http://www.gnu.org/software/automake/manual/automake.html'
   - log_i: 'autoconf: http://www.gnu.org/software/autoconf/manual/autoconf.html' 
   - if defined $vim:
-    - call: vim.run
+    - use: vim.run
   - if defined $build:
     - log_i: 'Creating spec file'
     - $dirname: $(pwd)
@@ -85,7 +85,7 @@ cpp:
     - cl_f: rpmbuild -ba "$basename.spec"
     - cl: cd "$dirname"
   - if $eclipse:
-    - call: eclipse.run_cpp
+    - use: eclipse.run_cpp
   - if defined $github:
     - log_i: "Push to GitHub repository"
     - le github: create_and_push

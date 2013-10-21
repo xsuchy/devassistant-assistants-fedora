@@ -2,7 +2,7 @@ lamp:
   fullname: Apache, Mysql and PHP helper
 
   dependencies:
-  - call: super.dependencies
+  - use: super.dependencies
   # Apache things
   - rpm: ['httpd']
   # PHP issues
@@ -12,23 +12,23 @@ lamp:
   - rpm: ['mysql', 'mysql-server']
 
   dependencies_vim:
-  - call: vim.dependencies
+  - use: vim.dependencies
 
   dependencies_eclipse:
-  - call: eclipse.dependencies_python
+  - use: eclipse.dependencies_python
 
   args:
     name:
-      snippet: common_args
+      use: common_args
 
     vim:
-      snippet: vim
+      use: vim
 
     eclipse:
-      snippet: eclipse
+      use: eclipse
 
     github:
-      snippet: common_args
+      use: common_args
 
     rootdbpwd:
       flags:
@@ -62,15 +62,15 @@ lamp:
     - cl: mkdir -p $homedir/public_html/$basename
     - cl_f: cp -v *phpfiles "$homedir/public_html/$basename"
     - cl_f: cd "$homedir/public_html/$basename"
-    - call: git_init_add_commit
+    - use: git_init_add_commit
     - cl_f: pwd
   - else:
     - cl_f: cd "$homedir/public_html/$basename"
     - log_i: 'Project already exists'  
   - if defined $vim:
-    - call: vim.run
+    - use: vim.run
   - if $eclipse:
-    - call: eclipse.run_php
+    - use: eclipse.run_php
   - if defined $github:
     - cl: cd "$homedir/public_html/$basename"
     - log_i: "Push on GitHub repository"

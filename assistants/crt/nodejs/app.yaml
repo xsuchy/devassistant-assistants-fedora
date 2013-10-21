@@ -3,7 +3,7 @@ appjs:
   description: 'Node.JS assistant will help you create a basic Node.JS application and install its dependencies.'
 
   dependencies:
-    - call: super.dependencies
+    - use: super.dependencies
     - rpm: ['node-gyp']
     - rpm: ['nodejs-abbrev']
     - rpm: ['nodejs-ansi']
@@ -80,14 +80,14 @@ appjs:
     #- npm: ['glob']
 
   dependencies_vim:
-  - call: vim.dependencies
+  - use: vim.dependencies
 
   args:
     name:
-      snippet: common_args
+      use: common_args
 
     github:
-      snippet: common_args
+      use: common_args
 
   files:
     appnodejs: &appnodejs
@@ -102,7 +102,7 @@ appjs:
   - dda_c: "$basename"
   - cl: cd "$basename"
   - log_i: 'Creating Node.JS project $basename in $dirname ...'
-  - call: git_init_add_commit
+  - use: git_init_add_commit
   - if defined $github:
     - github: create_and_push
   - log_i: 'Node.JS project $basename in $dirname has been created.'

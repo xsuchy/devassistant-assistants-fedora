@@ -5,7 +5,7 @@ c_header:
 
   args:
     path:
-      snippet: common_args
+      use: common_args
 
     header:
       flags:

@@ -2,21 +2,21 @@ maven:
   fullname: Simple Apache Maven Project
 
   dependencies:
-  - call: super.dependencies
+  - use: super.dependencies
   - rpm: ['maven-local','maven-jar-plugin','maven-clean-plugin','junit']
 
   dependencies_eclipse:
-  - call: eclipse.dependencies_java
+  - use: eclipse.dependencies_java
 
   args:
     name:
-      snippet: common_args
+      use: common_args
 
     eclipse:
-      snippet: eclipse
+      use: eclipse
 
     github:
-      snippet: common_args
+      use: common_args
 
   files:
     mavenexample: &mavenexample
@@ -49,7 +49,7 @@ maven:
   - cl: cd "${abspath}"
   # create local git repository
   - log_i: 'Creating git repository'
-  - call: git_init_add_commit
+  - use: git_init_add_commit
   # create tarball
   - log_i: 'Creating tarball'
   - cl: tar czf "${name}.tar.gz" pom.xml ./src/ run
@@ -57,7 +57,7 @@ maven:
   - cl: mvn-local -q -o -B package
   - log_i: 'Done'
   - if $eclipse:
-    - call: eclipse.run_java
+    - use: eclipse.run_java
   - if $github:
     - log_i: 'Push to GitHub repository'
     - github: create_and_push

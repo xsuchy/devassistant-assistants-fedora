@@ -6,7 +6,7 @@ create:
 
   args:
     path:
-      snippet: common_args
+      use: common_args
 
     push:
       flags: [-u, --push]
@@ -25,7 +25,7 @@ create:
     - cl: cd "$path"
   - if not $(test -e .git):
     - log_i: "It seems that your project doesn't have local git repo initialized. Initializing..."
-    - snippet: git_init_add_commit
+    - use: git_init_add_commit
   - $name: $(basename `pwd`)
   # we will use github args repeteadly, so store them in a variable
   - $gh_args:

@@ -5,7 +5,7 @@ c_lib:
 
   args:
     path:
-      snippet: common_args
+      use: common_args
 
     library:
       flags:

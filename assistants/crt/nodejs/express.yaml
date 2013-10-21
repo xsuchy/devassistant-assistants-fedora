@@ -3,7 +3,7 @@ expressjs:
   description: 'Express.JS assistant will help you create a basic web application with Express framework and install its dependencies.'
 
   dependencies:
-    - call: super.dependencies
+    - use: super.dependencies
     - rpm: ['node-gyp']
     - rpm: ['nodejs-abbrev']
     - rpm: ['nodejs-ansi']
@@ -95,14 +95,14 @@ expressjs:
     - npm: ['glob']
 
   dependencies_vim:
-  - call: vim.dependencies
+  - use: vim.dependencies
 
   args:
     name:
-      snippet: common_args
+      use: common_args
 
     github:
-      snippet: common_args
+      use: common_args
 
   run:
   - $dirname: $(dirname "$name")
@@ -114,7 +114,7 @@ expressjs:
   - dda_c: $basename
   - cl: cd "$basename"
   - cl: npm install
-  - call: git_init_add_commit
+  - use: git_init_add_commit
   - if defined $github:
     - github: create_and_push
   - log_i: 'Express.JS project $basename in $dirname has been created.'

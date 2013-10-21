@@ -3,36 +3,36 @@ django:
   description: 'Django assistant will help you create a basic Django project and install its dependencies.'
 
   dependencies:
-  - call: super.dependencies
+  - use: super.dependencies
   - if $venv:
     - rpm: ['python${py3}-virtualenv']
   - else:
     - rpm: ['python${py3}-django']
 
   dependencies_eclipse:
-  - call: eclipse.dependencies_python
+  - use: eclipse.dependencies_python
 
   dependencies_vim:
-  - call: vim.dependencies
+  - use: vim.dependencies
 
   args:
     name:
-      snippet: common_args
+      use: common_args
 
     eclipse:
-      snippet: eclipse
+      use: eclipse
 
     github:
-      snippet: common_args
+      use: common_args
 
     vim:
-      snippet: vim
+      use: vim
 
     venv:
-      snippet: common_args
+      use: common_args
 
     py3:
-      snippet: common_args
+      use: common_args
 
   files:
     gitignore: &gitignore
@@ -73,11 +73,11 @@ django:
 
   - cl: cd "$basename"
   - if defined $vim:
-    - call: vim.run
+    - use: vim.run
   - if $eclipse:
-    - call: eclipse.run_python
+    - use: eclipse.run_python
   - cl: cp *gitignore .
-  - call: git_init_add_commit
+  - use: git_init_add_commit
   - if defined $github:
     - github: create_and_push
 
