@@ -19,11 +19,25 @@ custom:
       use: common_args
       help:
         Path where to checkout the repo (will be created if it does not exist).
+    gh_fork:
+      flags: [--gh-fork]
+      help: Fork the repo, assuming it's on Github. Pass your GH username as argument if it's
+            different from your system username.
+      action: [default_iff_used, '']
+      nargs: '?'
+      gui_hints:
+        default: $(whoami)
 
   run:
   - if not $(test -e "$path"):
     - cl: mkdir -p "$path"
   - cl: cd "$path"
+  - if defined $gh_fork:
+    - github:
+      - create_fork
+      - login: $gh_fork
+        repo_url: jacquev6/PyGithub
+    - $url: $LAST_RES
   - log_i: "Cloning project from remote git repo ..."
   - $git_output: $(git clone "$url")
   - $dirname: $(echo "$git_output" | grep "Cloning into" | sed "s|.*'\(.*\)'.*|\1|")
