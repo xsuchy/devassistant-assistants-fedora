@@ -3,7 +3,6 @@ cpp:
   description: C++ assistant will help you create a basic C++ project and install its dependencies.
 
   dependencies:
-  - use: super.dependencies
   - rpm: ['gcc-c++', 'glibc-devel', 'automake', 'autoconf', 'valgrind', 'gdb', 'ddd', 'strace', 'vim-enhanced', 'vim-X11']
 
   dependencies_build:
