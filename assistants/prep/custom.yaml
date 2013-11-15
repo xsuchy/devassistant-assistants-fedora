@@ -36,7 +36,7 @@ custom:
     - github:
       - create_fork
       - login: $gh_fork
-        repo_url: jacquev6/PyGithub
+        repo_url: $url
     - $url: $LAST_RES
   - log_i: "Cloning project from remote git repo ..."
   - $git_output: $(git clone "$url")
