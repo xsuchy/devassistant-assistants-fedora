@@ -2,10 +2,11 @@
 import sys
 import secondWindow
 import lastWindow
+import os
 
 from gi.repository import Gtk
 
-gladefile = "template-gui.glade"
+gladefile = os.path.join(os.path.dirname(__file__), "template-gui.glade")
 
 class firstWindow(object):
 
