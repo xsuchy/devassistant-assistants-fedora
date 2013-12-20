@@ -27,7 +27,7 @@ args:
     - -g
     - --github
     help:
-      'Create a Git Hub repository and push your sources there (uses your system username or specified name)'
+      'Create a GitHub repository and push your sources there (uses your system username or specified name)'
     nargs:
       '?'
     gui_hints:
