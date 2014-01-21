@@ -10,7 +10,7 @@ setup(
     name = 'NAME',
     version = '0.0.1',
     description = 'Short description',
-    long_description = 'Long description',
+    long_description = ''.join(open('README.rst').readlines()),
     keywords = 'some, keywords',
     author = 'yourname',
     author_email = 'yourmail',
