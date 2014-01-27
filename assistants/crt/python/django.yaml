@@ -16,7 +16,7 @@ django:
   - use: vim.dependencies
 
   dependencies_docker:
-  - rpm: ['docker-io']
+  - rpm: ['python-docker-py']
 
   args:
     name:
