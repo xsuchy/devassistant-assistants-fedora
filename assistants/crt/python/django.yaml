@@ -15,6 +15,9 @@ django:
   dependencies_vim:
   - use: vim.dependencies
 
+  dependencies_docker:
+  - rpm: ['docker-io']
+
   args:
     name:
       use: common_args
@@ -34,9 +37,14 @@ django:
     py3:
       use: common_args
 
+    docker:
+      use: common_args
+
   files:
     gitignore: &gitignore
       source: ../.gitignore
+    dockerfile: &dockerfile
+      source: Dockerfile
 
   run:
   - $dirname: $(dirname "$name")
@@ -45,6 +53,37 @@ django:
     - log_e: '$name already exists, cannot proceed.'
   - cl: mkdir -p "$dirname"
   - cl: cd "$dirname"
+
+  - use: self.run_startproject
+  - use: self.run_modify_managepy
+
+  - dda_c: $basename
+
+  # per-argument sections
+  - cl: cd "$basename"
+  - if defined $vim:
+    - use: vim.run
+  - if $eclipse:
+    - use: eclipse.run_python
+  - if $docker:
+    - use: self.run_create_dockerfile
+
+  - cl: cp *gitignore .
+  - use: git_init_add_commit
+  - if defined $github:
+    - github: create_and_push
+
+  - if $docker:
+    - docker_b: .
+
+  - log_i: 'Django project $basename in $dirname has been created.'
+  - if $venv:
+    - log_i: 'To switch to the created virtualenv, use "source ${dirname}/${basename}/bin/activate"'
+  - log_i: 'To run the application use: ./manage.py runserver'
+  - log_i: 'For more information about Django project visit https://www.djangoproject.com'
+
+
+  run_startproject: # creates requirements.txt if $venv is used
   - if $venv:
     - cl_i: virtualenv "$basename"
     - cl: cd "$basename"
@@ -55,6 +94,7 @@ django:
   - log_i: 'Creating Django project $basename in $dirname ...'
   - if $venv:
     - cl: source bin/activate && django-admin.py startproject "$basename"
+    - cl: echo django==`source bin/activate && django-admin.py --version` > "$basename/requirements.txt"
   - else:
     - if $py3: # also replace the python shebang for Python 3
       - cl: python3-django-admin startproject "$basename"
@@ -62,6 +102,8 @@ django:
     - else:
       - cl: django-admin startproject "$basename"
 
+
+  run_modify_managepy:
   # make modifications to settings.py so that project can be run immediately
   - cl: sed -i "s|django.db.backends.|django.db.backends.sqlite3|" "$basename/$basename/settings.py"
   # \(.\) is workaround for ":", which cannot be here because it would mean yaml error
@@ -69,20 +111,17 @@ django:
   - cl: sed -i "2i\BASE_DIR = os.path.join(os.path.dirname(__file__), '..')\n" "$basename/$basename/settings.py"
   - cl: sed -i "s|'NAME'\(.\) ''|'NAME'\1 os.path.join(BASE_DIR, 'db.sqlite3')|" "$basename/$basename/settings.py"
   - cl: chmod +x "$basename/manage.py"
-  - dda_c: $basename
 
-  - cl: cd "$basename"
-  - if defined $vim:
-    - use: vim.run
-  - if $eclipse:
-    - use: eclipse.run_python
-  - cl: cp *gitignore .
-  - use: git_init_add_commit
-  - if defined $github:
-    - github: create_and_push
 
-  - log_i: 'Django project $basename in $dirname has been created.'
+  run_create_dockerfile:
   - if $venv:
-    - log_i: 'To switch to the created virtualenv, use "source ${dirname}/${basename}/bin/activate"'
-  - log_i: 'To run the application use: ./manage.py runserver'
-  - log_i: 'For more information about Django project visit https://www.djangoproject.com'
+    - $setup_command: $(echo 'RUN virtualenv "$basename" && cd "$basename" &&
+                              source bin/activate && pip install -r "${basename}/requirements.txt"')
+  - else:
+    - $setup_command: '"yum install python-django"'
+  - jinja_render:
+      template: *dockerfile
+      destination: .
+      data:
+        basename: $basename
+        setup_command: $setup_command

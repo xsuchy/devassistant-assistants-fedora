@@ -33,6 +33,11 @@ args:
     gui_hints:
       default: $(whoami)
 
+  docker:
+    flags: [--docker]
+    help: Add Dockerfile and create docker-io image.
+    action: store_true
+
   # meant for modifier assistants when specifying path to already existing project
   path:
     flags:
