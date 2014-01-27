@@ -118,7 +118,7 @@ django:
     - $setup_command: $(echo 'RUN virtualenv "$basename" && cd "$basename" &&
                               source bin/activate && pip install -r "${basename}/requirements.txt"')
   - else:
-    - $setup_command: '"yum install python-django"'
+    - $setup_command: '"RUN yum install python-django"'
   - jinja_render:
       template: *dockerfile
       destination: .
