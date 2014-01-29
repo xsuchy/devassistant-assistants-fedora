@@ -47,15 +47,19 @@ django:
       source: Dockerfile
 
   run:
+  - if $py3 and $venv:
+    # TODO: fix this
+    - log_e: Virtualenv is currently unsupported with Python 3.
   - $dirname: $(dirname "$name")
   - $basename: $(basename "$name")
+
   - if $(test -e "$name"):
     - log_e: '$name already exists, cannot proceed.'
   - cl: mkdir -p "$dirname"
   - cl: cd "$dirname"
 
   - use: self.run_startproject
-  - use: self.run_modify_managepy
+  - use: self.run_modify_settings
 
   - dda_c: $basename
 
@@ -75,15 +79,21 @@ django:
 
   - if $docker:
     - docker_b: .
+    - $docker_image: $LAST_RES
 
   - log_i: 'Django project $basename in $dirname has been created.'
   - if $venv:
     - log_i: 'To switch to the created virtualenv, use "source ${dirname}/${basename}/bin/activate"'
-  - log_i: 'To run the application use: ./manage.py runserver'
+  - if $docker:
+    - log_i: 'To mount start a container and mount source code inside it, switch to project dir and use'
+    - log_i: 'da mod docker develop --reuse-image $docker_image'
+    - log_i: 'Then access http://{printed_ip_address}:8000 in your browser.'
+  - else:
+    - log_i: 'To run the application use: ./manage.py runserver'
   - log_i: 'For more information about Django project visit https://www.djangoproject.com'
 
 
-  run_startproject: # creates requirements.txt if $venv is used
+  run_startproject: # also creates requirements.txt if $venv is used
   - if $venv:
     - cl_i: virtualenv "$basename"
     - cl: cd "$basename"
@@ -103,25 +113,31 @@ django:
       - cl: django-admin startproject "$basename"
 
 
-  run_modify_managepy:
-  # make modifications to settings.py so that project can be run immediately
-  - cl: sed -i "s|django.db.backends.|django.db.backends.sqlite3|" "$basename/$basename/settings.py"
-  # \(.\) is workaround for ":", which cannot be here because it would mean yaml error
-  - cl: sed -i "1i\import os\n" "$basename/$basename/settings.py"
-  - cl: sed -i "2i\BASE_DIR = os.path.join(os.path.dirname(__file__), '..')\n" "$basename/$basename/settings.py"
-  - cl: sed -i "s|'NAME'\(.\) ''|'NAME'\1 os.path.join(BASE_DIR, 'db.sqlite3')|" "$basename/$basename/settings.py"
+  run_modify_settings:
   - cl: chmod +x "$basename/manage.py"
+  - $settings: $(echo "$basename/$basename/settings.py")
+
+  # new versions of Django (>= 1.6) already have this stuff done
+  - if not $(grep BASE_DIR "$settings"):
+    # make modifications to settings.py so that project can be run immediately
+    - cl: sed -i "s|django.db.backends.|django.db.backends.sqlite3|" "$settings"
+    # \(.\) is workaround for ":", which cannot be here because it would mean yaml error
+    - cl: sed -i "1i\import os\n" "$settings"
+    - cl: sed -i "2i\BASE_DIR = os.path.join(os.path.dirname(__file__), '..')\n" "$settings"
+    - cl: sed -i "s|'NAME'\(.\) ''|'NAME'\1 os.path.join(BASE_DIR, 'db.sqlite3')|" "$settings"
 
 
   run_create_dockerfile:
   - if $venv:
-    - $setup_command: $(echo 'RUN virtualenv "$basename" && cd "$basename" &&
-                              source bin/activate && pip install -r "${basename}/requirements.txt"')
+    - $setup_command: $(echo 'RUN yum -y install python-virtualenv && virtualenv "$basename" &&
+                              cd "$basename" && source bin/activate &&
+                              pip install -r "${basename}/requirements.txt"')
   - else:
-    - $setup_command: '"RUN yum install python-django"'
+    - $setup_command: '"RUN yum -y install python${py3}-django"'
   - jinja_render:
       template: *dockerfile
       destination: .
       data:
         basename: $basename
+        venv: $venv
         setup_command: $setup_command

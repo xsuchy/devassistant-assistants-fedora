@@ -1,6 +1,15 @@
 FROM mattdm/fedora
 
+ADD . /srv/{{ basename }}{% if venv %}/{{ basename }}{% endif %}
+
+{% if venv %}
+WORKDIR /srv
+{% endif %}
 {{ setup_command }}
-ADD . /srv/{{ basename }}
 EXPOSE 8000
-CMD /srv/{{ basename }}/manage.py runserver
+{% if venv %}
+CMD source /srv/{{ basename }}/bin/activate && \
+ /srv/{{ basename }}/{{ basename }}/manage.py runserver 0.0.0.0:8000
+{% else %}
+CMD /srv/{{ basename }}/manage.py runserver 0.0.0.0:8000
+{% endif %}
