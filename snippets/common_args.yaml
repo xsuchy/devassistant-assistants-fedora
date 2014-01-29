@@ -55,8 +55,9 @@ args:
   venv:
     flags:
     - --venv
-    nargs: 0
-    action: [default_iff_used, venv]
+    action: store_const
+    const: venv
+    default: ''
     help:
       'Use virtualenv to set up project and install dependencies.'
 
@@ -67,5 +68,4 @@ args:
     action: store_const
     const: 3
     default: ''
-    nargs: 0
     help: 'Use Python 3 instead of Python 2.'
