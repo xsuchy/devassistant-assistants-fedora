@@ -1,6 +1,6 @@
 c_lib:
   fullname: Adding library
-  description: 'This assistant will help you to add library into already created project by devassistant.
+  description: 'This assistant will help you add library into already created project by devassistant.
     Just run it in the projects directory and specify which library you want to add and check.'
 
   args:

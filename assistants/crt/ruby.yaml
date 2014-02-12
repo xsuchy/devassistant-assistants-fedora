@@ -1,6 +1,6 @@
 ruby:
   fullname: Ruby
-  description: This is base Ruby assistant, you have to choose a specific project type.
+  description: This is base Ruby assistant. You have to choose a specific project type.
 
   dependencies:
   - rpm:
