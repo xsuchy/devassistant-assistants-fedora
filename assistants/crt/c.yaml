@@ -6,7 +6,7 @@ c:
   - rpm: ['gcc', 'glibc-devel', 'automake', 'autoconf', 'valgrind', 'gdb', 'ddd', 'strace', 'vim-enhanced', 'vim-X11']
 
   dependencies_build:
-  - rpm: ['rpm-build','mock','eclipse-rpm-editor']
+  - rpm: ['rpm-build','mock','rpmdevtools','eclipse-rpm-editor']
 
   dependencies_eclipse:
   - use: eclipse.dependencies_c
