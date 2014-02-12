@@ -6,7 +6,7 @@ cpp:
   - rpm: ['gcc-c++', 'glibc-devel', 'automake', 'autoconf', 'valgrind', 'gdb', 'ddd', 'strace', 'vim-enhanced', 'vim-X11']
 
   dependencies_build:
-  - rpm: ['rpm-build','mock','eclipse-rpm-editor']
+  - rpm: ['rpm-build','mock','rpmdevtools','eclipse-rpm-editor']
 
   dependencies_eclipse:
   - use: eclipse.dependencies_c
@@ -80,7 +80,7 @@ cpp:
     - cl: cp "$basename-0.0.tar.gz" ~/rpmbuild/SOURCES
     - cl: cp "$basename.spec" ~/rpmbuild/SPECS
     - cl: cd ~/rpmbuild/SPECS
-    - cl_f: pkexec yum-builddep "~/rpmbuild/SPECS/$basename.spec"
+    - cl_f: pkexec yum-builddep "~/rpmbuild/SPECS/$basename.spec" -y
     - log_i: 'Creating RPM from tarball'
     - cl_f: rpmbuild -ba "$basename.spec"
     - cl: cd "$dirname"

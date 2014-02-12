@@ -1,6 +1,6 @@
 c_header:
   fullname: Adding header
-  description: 'This assistant will help you to add header file into already created project by devassistant
+  description: 'This assistant will help you add header file into already created project by devassistant.
     Just run it in the projects directory and specify which header you want to add and check.'
 
   args:

@@ -1,6 +1,6 @@
 gtk3:
   fullname: Python GTK+ 3
-  description: 'Python GTK+ 3 assistant will help you to create a basic GTK+ 3 application with basic functionality of widgets.'
+  description: 'Python GTK+ 3 assistant will help you create a basic GTK+ 3 application with basic functionality of widgets.'
 
   dependencies:
   - use: super.dependencies

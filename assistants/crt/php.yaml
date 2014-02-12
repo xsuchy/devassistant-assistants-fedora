@@ -1,6 +1,6 @@
 php:
   fullname: PHP
-  description: This is base PHP assistant, you have to choose a specific project type.
+  description: This is base PHP assistant. You have to choose a specific project type.
 
   dependencies:
   - rpm: ['php']
