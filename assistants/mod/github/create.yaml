@@ -18,7 +18,7 @@ create:
       help: "Specify your github login, in case it's different from your system username."
       default: ''
       gui_hints:
-        default: $(pwd)
+        default: $(whoami)
 
   run:
   - if $path:
