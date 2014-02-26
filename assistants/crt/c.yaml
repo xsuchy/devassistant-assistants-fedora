@@ -3,7 +3,7 @@ c:
   description: C assistant will help you create a basic C project and install its dependencies.
 
   dependencies:
-  - rpm: ['gcc', 'glibc-devel', 'automake', 'autoconf', 'valgrind', 'gdb', 'ddd', 'strace', 'vim-enhanced', 'vim-X11']
+  - rpm: ['gcc', 'glibc-devel', 'automake', 'autoconf', 'valgrind', 'gdb', 'ddd', 'strace']
 
   dependencies_build:
   - rpm: ['rpm-build','mock','rpmdevtools','eclipse-rpm-editor']
