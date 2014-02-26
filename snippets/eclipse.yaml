@@ -57,7 +57,7 @@ files:
     source: php/.eclipseproject
 
 run_c:
-- $basename: $(basename "$name")
+- $basename~: $(basename "$name")
 - log_i: 'Creating eclipse project from command line'
 - cl: mkdir -p "$eclipse/$basename"
 - if not $(ls "$eclipse/$basename/.project"):
@@ -80,7 +80,7 @@ run_c:
 - log_i: 'Start eclipse for developping.'
 
 run_cpp:
-- $basename: $(basename "$name")
+- $basename~: $(basename "$name")
 - log_i: 'Creating eclipse project from command line'
 - cl: mkdir -p "$eclipse/$basename"
 - if not $(ls "$eclipse/$basename/.project"):
@@ -103,7 +103,7 @@ run_cpp:
 - log_i: 'Start eclipse for developping.'
 
 run_python:
-- $basename: $(basename "$name")
+- $basename~: $(basename "$name")
 - log_i: 'Registering as Eclipse project ...'
 - if $(grep django manage.py):
   - cl: cp *dot_project_django .
@@ -135,7 +135,7 @@ run_java:
 - log_i: 'You can now import this project into your Eclipse workspace'
 
 run_php:
-- $basename: $(basename "$name")
+- $basename~: $(basename "$name")
 - log_i: 'Registering as Eclipse project ...'
 - cl: mkdir -p "$eclipse/$name"
 - if not $(ls ".project"):
@@ -151,4 +151,3 @@ run_php:
 - cl: eclipse -nosplash -application org.eclipse.cdt.managedbuilder.core.headlessbuild -import "$basename" -data "$eclipse"
 - cl: cd "$basename"
 - log_i: 'Registered as Eclipse project ...'
-
