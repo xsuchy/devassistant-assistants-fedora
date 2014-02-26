@@ -1,3 +1,2 @@
-docker:
-  fullname: Docker.io
-  description: This is a base Docker assistant it's subassistants will help you work with Docker images and containers.
+fullname: Docker
+description: This is a base Docker assistant it's subassistants will help you work with Docker images and containers.
