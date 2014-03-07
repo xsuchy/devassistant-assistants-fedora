@@ -19,6 +19,9 @@ pre_run:
   - cl: cd $path
 
 run:
+- if not $(test -f Dockerfile):
+  - $pwd~: $(pwd)
+  - log_e: No Dockerfile found in $pwd, exiting!
 - if $reuse_image:
   - $candidates~: $(docker images -q | grep "^$reuse_image" -m 1)
   - if not $LAST_LRES:
