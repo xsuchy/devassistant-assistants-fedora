@@ -32,6 +32,7 @@ run:
   - cl: mkdir -p "$path"
 - cl: cd "$path"
 - if defined $gh_fork:
+  - $oldurl: $url
   - github:
     - create_fork
     - login: $gh_fork
@@ -43,6 +44,9 @@ run:
 - if not "$dirname":
   - log_e: Could not checkout sources - $git_output
 - cl: cd "$dirname"
+- if defined $gh_fork:
+  - log_i: Adding original upstream project as "upstream" git remote.
+  - cl_i: git remote add upstream $oldurl
 - if $(test -e .devassistant):
   - dda_dependencies: .
   - dda_run: .
