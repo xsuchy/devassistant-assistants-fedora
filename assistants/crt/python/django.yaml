@@ -15,7 +15,7 @@ dependencies_vim:
 - use: vim.dependencies
 
 dependencies_docker:
-- rpm: ['python-docker-py']
+- rpm: [docker-io]
 
 args:
   name:
@@ -78,7 +78,7 @@ run:
 
 - if $docker:
   - $docker_image~:
-    - docker_b: .
+    - docker_build: .
 
 - log_i: 'Django project $basename in $dirname has been created.'
 - if $venv:
