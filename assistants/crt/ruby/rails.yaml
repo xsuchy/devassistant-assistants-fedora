@@ -37,7 +37,7 @@ run:
 - cl: cd "$basename"
 - if defined $vim:
   - use: vim.run
-- use: git_init_add_commit
+- use: git_init_add_commit.run
 - if defined $github:
   - github: create_and_push
 - log_i: 'Ruby on Rails project $basename in $dirname has been created.'

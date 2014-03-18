@@ -24,7 +24,7 @@ run:
   - cl: cd "$path"
 - if not $(test -e .git):
   - log_i: "It seems that your project doesn't have local git repo initialized. Initializing..."
-  - use: git_init_add_commit
+  - use: git_init_add_commit.run
 - $name~: $(basename `pwd`)
 # we will use github args repeteadly, so store them in a variable
 - $gh_args:

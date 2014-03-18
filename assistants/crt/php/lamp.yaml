@@ -61,7 +61,7 @@ run:
   - cl: mkdir -p $homedir/public_html/$basename
   - cl_f: cp -v *phpfiles "$homedir/public_html/$basename"
   - cl_f: cd "$homedir/public_html/$basename"
-  - use: git_init_add_commit
+  - use: git_init_add_commit.run
   - cl_f: pwd
 - else:
   - cl_f: cd "$homedir/public_html/$basename"

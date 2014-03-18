@@ -48,7 +48,7 @@ run:
 - cl: cd "${abspath}"
 # create local git repository
 - log_i: 'Creating git repository'
-- use: git_init_add_commit
+- use: git_init_add_commit.run
 # create tarball
 - log_i: 'Creating tarball'
 - cl: tar czf "${name}.tar.gz" pom.xml ./src/ run

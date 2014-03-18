@@ -51,7 +51,7 @@ run:
   - cl: sed -i "s|CDevelopmentTool|$basename|" configure.ac
   - cl: mv cdevelopmenttool.spec "$basename.spec"
   - cl: sed -i "s|cdevelopmenttool|$basename|" "$basename.spec"
-  - use: git_init_add_commit
+  - use: git_init_add_commit.run
 - else:
   - cl: cd "$lowername"
   - log_i: 'Project already exists'  

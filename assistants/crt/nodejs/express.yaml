@@ -113,7 +113,7 @@ run:
 - dda_c: $basename
 - cl: cd "$basename"
 - cl: npm install
-- use: git_init_add_commit
+- use: git_init_add_commit.run
 - if defined $github:
   - github: create_and_push
 - log_i: 'Express.JS project $basename in $dirname has been created.'

@@ -45,7 +45,7 @@ run:
 - if $eclipse:
   - use: eclipse.run_python
 - cl: cp *gitignore .
-- use: git_init_add_commit
+- use: git_init_add_commit.run
 - if defined $github:
   - github: create_and_push
 - log_i: 'GTK+ 3 project $basename in $dirname has been created.'

@@ -57,7 +57,7 @@ run:
 - cl: cd "${abspath}"
 # create local git repository
 - log_i: 'Creating git repository'
-- use: git_init_add_commit
+- use: git_init_add_commit.run
 # create tarball
 - log_i: 'Creating tarball'
 #- cl: git archive --format tar HEAD | gzip -9 > JSFexample.tar.gz

@@ -72,7 +72,7 @@ run:
   - use: self.run_create_dockerfile
 
 - cl: cp *gitignore .
-- use: git_init_add_commit
+- use: git_init_add_commit.run
 - if defined $github:
   - github: create_and_push
 
