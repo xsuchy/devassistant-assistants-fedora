@@ -15,7 +15,7 @@ dependencies_vim:
 
 args:
   name:
-    snippet: common_args
+    use: common_args
 
   build:
     flags:
@@ -26,13 +26,13 @@ args:
     action:
       'store_true'
   vim:
-    snippet: vim
+    use: vim
 
   eclipse:
-    snippet: eclipse
+    use: eclipse
 
   github:
-    snippet: common_args
+    use: common_args
 
 files:
   csources: &csources
