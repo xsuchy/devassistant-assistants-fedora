@@ -33,11 +33,13 @@ run:
 - cl: cd "$path"
 - if defined $gh_fork:
   - $oldurl: $url
-  - github:
-    - create_fork
-    - login: $gh_fork
-      repo_url: $url
-  - $url: $LAST_RES
+  - $lres, $url~:
+    - github:
+      - create_fork
+      - login: $gh_fork
+        repo_url: $url
+  - if not $lres:
+    - log_e: Failed to fork github repo, exiting ...
 - log_i: "Cloning project from remote git repo ..."
 - $git_output~: $(git clone "$url")
 - $dirname~: $(echo "$git_output" | grep "Cloning into" | sed "s|.*'\(.*\)'.*|\1|")
@@ -46,7 +48,7 @@ run:
 - cl: cd "$dirname"
 - if defined $gh_fork:
   - log_i: Adding original upstream project as "upstream" git remote.
-  - cl_i: git remote add upstream $oldurl
+  - cl: git remote add upstream $oldurl
 - if $(test -e .devassistant):
   - dda_dependencies: .
   - dda_run: .

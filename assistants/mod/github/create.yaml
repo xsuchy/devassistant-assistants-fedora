@@ -32,9 +32,12 @@ run:
     reponame: $name
 # first create repo and add remote
 - log_i: "Creating repo on Github ..."
-- github:
-  - create_repo
-  - $gh_args
+- $lres, $res~:
+  - github:
+    - create_repo
+    - $gh_args
+- if not $lres:
+  - log_e: Failed to create Github repo, exiting ...
 - log_i: "Adding Github as remote 'origin' ..."
 - github:
   - add_remote_origin
