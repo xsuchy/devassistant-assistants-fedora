@@ -1,4 +1,4 @@
-FROM mattdm/fedora
+FROM fedora
 
 ADD . /srv/{{ basename }}{% if venv %}/{{ basename }}{% endif %}
 
