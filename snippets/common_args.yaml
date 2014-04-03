@@ -35,7 +35,7 @@ args:
 
   docker:
     flags: [--docker]
-    help: Add Dockerfile and create docker-io image.
+    help: Add Dockerfile and create Docker image.
     action: store_true
 
   # meant for modifier assistants when specifying path to already existing project
