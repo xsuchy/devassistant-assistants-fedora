@@ -2,7 +2,7 @@ fullname: C
 description: C assistant will help you create a basic C project and install its dependencies.
 
 dependencies:
-- rpm: ['gcc', 'glibc-devel', 'automake', 'autoconf', 'valgrind', 'gdb', 'ddd', 'strace']
+- rpm: ['gcc', 'glibc-devel', 'automake', 'autoconf', 'valgrind', 'gdb', 'strace']
 
 dependencies_build:
 - rpm: ['rpm-build','mock','rpmdevtools','eclipse-rpm-editor']
