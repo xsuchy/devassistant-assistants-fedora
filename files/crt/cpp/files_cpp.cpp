@@ -47,18 +47,19 @@ int readFile()
     return 0;
 }
 
-int main(){
+int main()
+{
 
-        if (writeFile()!=0)
-        {
-            cout << "Could create and write to file" << endl;
-            exit(1);
-        }
+    if (writeFile()!=0)
+    {
+        cout << "Could create and write to file" << endl;
+        exit(1);
+    }
 
-        if(readFile()!=0)
-        {
-            cout << "Could not read from file" << endl;
-            exit(1);
-        }
+    if(readFile()!=0)
+    {
+        cout << "Could not read from file" << endl;
+        exit(1);
+    }
 }
        
