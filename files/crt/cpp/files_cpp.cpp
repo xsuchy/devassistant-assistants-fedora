@@ -26,18 +26,16 @@ int writeFile()
 
 int readFile()
 {
-    string line;
     ifstream testFile ("/tmp/cppTestFile");
     cout << "Read text from file /tmp/cppTestFile" << endl;
     if(testFile.is_open())
     {
-        while (testFile.good())
+        string line;
+        while (getline(testFile,line))
         {
-            getline(testFile,line);
             cout << line << endl;
         }
-        testFile.close();
-        cout << "Reading operation was successfull" << endl;
+        cout << "Reading operation was successful" << endl;
     }
     else
     {
