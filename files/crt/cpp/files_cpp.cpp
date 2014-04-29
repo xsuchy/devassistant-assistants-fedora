@@ -5,7 +5,7 @@
 
 using namespace std;
 
-int writeFile()
+bool writeFile()
 {
     ofstream testFile ("/tmp/cppTestFile");
     cout << "Now we will write some text to fire /tmp/cppTestFile" << endl;
@@ -19,12 +19,12 @@ int writeFile()
     else
     {
         cout << "Unable to open file";
-        return 1;
+        return false;
     }
-    return 0;
+    return true;
 }
 
-int readFile()
+bool readFile()
 {
     ifstream testFile ("/tmp/cppTestFile");
     cout << "Read text from file /tmp/cppTestFile" << endl;
@@ -40,21 +40,21 @@ int readFile()
     else
     {
         cout << "Unable to open file" << endl;
-        return 1;
+        return false;
     }
-    return 0;
+    return true;
 }
 
 int main()
 {
 
-    if (writeFile()!=0)
+    if (!writeFile())
     {
-        cout << "Could create and write to file" << endl;
+        cout << "Could not create and write to file" << endl;
         exit(1);
     }
 
-    if(readFile()!=0)
+    if(!readFile())
     {
         cout << "Could not read from file" << endl;
         exit(1);
