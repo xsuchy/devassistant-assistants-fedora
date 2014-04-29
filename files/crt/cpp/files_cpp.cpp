@@ -18,7 +18,7 @@ bool writeFile()
     }
     else
     {
-        cout << "Unable to open file";
+        cerr << "Unable to open file";
         return false;
     }
     return true;
@@ -39,7 +39,7 @@ bool readFile()
     }
     else
     {
-        cout << "Unable to open file" << endl;
+        cerr << "Unable to open file" << endl;
         return false;
     }
     return true;
@@ -50,13 +50,13 @@ int main()
 
     if (!writeFile())
     {
-        cout << "Could not create and write to file" << endl;
+        cerr << "Could not create and write to file" << endl;
         exit(1);
     }
 
     if(!readFile())
     {
-        cout << "Could not read from file" << endl;
+        cerr << "Could not read from file" << endl;
         exit(1);
     }
 }
