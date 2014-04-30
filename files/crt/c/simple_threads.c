@@ -61,7 +61,8 @@ void do_another_thing(int *pnum_times)
 	for(i = 0; i<4; i++)
 	{
 		printf("doing another thing\n");
-		for(j=0;j<10000;j++) x = x+i;
+		for(j=0; j<10000; j++)
+			x = x+i;
 		(*pnum_times)++;
 	}
 }
@@ -77,7 +78,7 @@ void print_message_function(void *ptr)
 {
 	thdata * data;
 	data = (thdata *) ptr;
-	printf("Thread %d says %s \n", data->thread_no,data->message);
+	printf("Thread %d says %s \n", data->thread_no, data->message);
 
 	pthread_exit(0);
 }
