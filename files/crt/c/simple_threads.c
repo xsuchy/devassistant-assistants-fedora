@@ -40,6 +40,7 @@ int main()
 
 	do_wrap_up(r1,r2);
 
+	return 0;
 }
 
 void do_one_thing(int *pnum_times)
