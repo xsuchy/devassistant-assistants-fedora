@@ -13,7 +13,7 @@ typedef struct str_thdata
 	char message[100];
 } thdata;
 
-main()
+int main()
 {
 	pthread_t thread1, thread2;
 	pthread_t thread3, thread4;
