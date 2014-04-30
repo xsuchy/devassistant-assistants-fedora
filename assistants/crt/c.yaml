@@ -1,5 +1,5 @@
 fullname: C
-description: C assistant will help you create a basic C project and install its dependencies.
+description: The C assistant will help you create a basic C project and install its dependencies.
 
 dependencies:
 - rpm: ['gcc', 'glibc-devel', 'automake', 'autoconf', 'valgrind', 'gdb', 'strace']
@@ -62,10 +62,10 @@ run:
 - cl_i: make clean
 - log_i: 'Compiling sources'
 - cl_i: make
-- log_i: 'Run make distcheck to create tar ball'
+- log_i: 'Run make distcheck to create a tar ball'
 - cl_i: make dist
-- log_i: 'In $name/README file are described steps how to add and build'
-- log_i: 'new C source file by autotools'
+- log_i: 'The $name/README file describes how to add and build a new C'
+- log_i: 'source file using autotools'
 - log_i: 'More information about autotools can be found here:'
 - log_i: 'automake: http://www.gnu.org/software/automake/manual/automake.html'
 - log_i: 'autoconf: http://www.gnu.org/software/autoconf/manual/autoconf.html' 
@@ -86,5 +86,5 @@ run:
 - if $eclipse:
   - use: eclipse.run_c
 - if defined $github:
-  - log_i: "Push to GitHub repository"
+  - log_i: "Pushing to GitHub repository"
   - github: create_and_push
