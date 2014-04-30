@@ -1,50 +1,65 @@
-This package contains several programs for beginners which include
-as sources and binaries.
+This package contains several programs for beginners.
+It includes sources and creates binaries.
 
 Programs available here are:
 
-Operation with files:
-fileOperations .... program demonstrates how to operated with files.
-Including read and writing operations
+fileOperations_cpp
+A program demonstrating how to operate with files.
+Performs reading and writing operations.
 
-basic_class ... is the simple program which demostrates how to create simple class in C++.
+basic_class ... a simple program which demonstrates how to create a simple class in C++.
 
-=== How to add new C++ file to project ===
-Here is described guide how to add new C++ file to automake tools.
+=== How to add a new C++ file to the project ===
 
-Let's say that we have added into project directory 
-file named my_test.cpp. To be sure that file is compile free we need to add them into
-automake tools.
+This is a guide to adding a new C++ file using autotools, by editing the
+files in the project directory.
 
-Let's say that my_test.cpp includes openssl/ssl.h
+Let's say that we have added a file named my_test.cpp to the project
+directory and we want to build a binary my_test from that file.
+Let's also say that my_test.cpp includes the <pcre.h> header and uses the
+function pcre_compile.
 
-Steps for compilation and making binaries are following:
-1) Go to you project name directory named by option -n
-2) Update file Makefile.am so that we will add binary name at the end into bin_PROGRAMS like
-     bin_PROGRAMS = <actuall_binaries> my_test
-3) Next step is to tell autotools build my my_test.cpp file. It is done so that
-new row has to be added in Makefile.am
+The steps for compilation and making binaries below assume your current
+working directory is the project directory. When running from a different
+directory append -p <path_to_your_project> to the commands.
+
+1) Update the file Makefile.am to add the new binary name at the end of
+   bin_PROGRAMS like:
+
+     bin_PROGRAMS = <existing_binaries> my_test
+
+2) Tell autotools to build the my_test.cpp file, by adding a new line to
+   Makefile.am:
+
      my_test_SOURCES = my_test.cpp
-4) If your program depends on some library like libssl then call devassistant with those parameters
-    da mod c lib -l libssl -f <function_from_libssl> -p <path_to_your_project>
-  and during compilation your program will be build with this library
-5) If you would like to add check whether some header is on target system call devassistant 
-    with those parameters
-    da mod c header --header <your_header.h> -p <path_to_your_project>
 
-6) When project is buildable and no errors occurs then you can add you binary
-    to RPM so that you will modify <project_name>.spec file stored in your project name directory
-    In that file add your directory in %install section so that new row will be add like:
+3) To add a test to the configure script to check whether the header is
+   on the target system call devassistant with these parameters:
 
-    install -p -m 755 -D src/my_test ${RPM_BUILD_ROOT}%{_bindir}/my_test
+     da modify c header --header pcre.h
 
-    Also it is needed to mentioned that file in %files section so that new row
-    will be added there like
+4) To add a test for the library call devassistant with these parameters:
 
-    %{_bindir}/my_test
+     da modify c lib -l libpcre -f pcre_compile>
 
-7) Update also changelog section so that Package Guidelines will be clear
+   The project makefile will be updated so the binary will be linked
+   with the library.
 
-8) For building RPM package leave your project name directory and run command
+5) When the project is buildable and no errors occurs then you can add
+   your binary to the RPM, by modifying the <project_name>.spec file
+   stored in your project directory.
 
-    da crt c cpp -n <your_project_name> -b 
+   In that file add your binary in the %install section as a new line like:
+
+     install -p -m 755 -D my_test ${RPM_BUILD_ROOT}%{_bindir}/my_test
+
+   You also need to add that file in %files section with a new line like:
+
+     %{_bindir}/my_test
+
+   Update the %changelog section to record the change.
+
+6) To build the RPM package leave your project directory and run the
+   command:
+
+     da create c cpp -n <your_project_name> -b 
