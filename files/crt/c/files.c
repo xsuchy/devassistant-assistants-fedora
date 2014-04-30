@@ -48,7 +48,7 @@ int main()
 {
 	printf("Hello World\n");
 
-	if (writeFile( )== 0)
+	if (writeFile() == 0)
 		printf("Writing to file was successfull\n");
 	else
 	{
