@@ -7,8 +7,6 @@ void do_one_thing(int *);
 void do_another_thing(int *);
 void do_wrap_up(int , int );
 
-int r1 = 0, r2 = 0;
-
 typedef struct str_thdata
 {
 	int thread_no;
@@ -17,6 +15,8 @@ typedef struct str_thdata
 
 int main()
 {
+	int r1 = 0, r2 = 0;
+
 	pthread_t thread1, thread2;
 	pthread_t thread3, thread4;
 
