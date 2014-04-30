@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <pthread.h>
 
 //This section is used for writing some characters to file
 int writeFile()
