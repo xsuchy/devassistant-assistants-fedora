@@ -5,7 +5,7 @@ dependencies:
 - rpm: ['gcc', 'glibc-devel', 'automake', 'autoconf', 'valgrind', 'gdb', 'strace']
 
 dependencies_build:
-- rpm: ['rpm-build','mock','rpmdevtools','eclipse-rpm-editor']
+- rpm: ['rpm-build','mock','rpmdevtools']
 
 dependencies_eclipse:
 - use: eclipse.dependencies_c
