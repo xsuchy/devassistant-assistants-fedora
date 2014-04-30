@@ -6,11 +6,11 @@
 int writeFile()
 {
 	FILE * f;
-	char * tmpBuf = "This is simple example how to write simple string to file";
+	const char * str = "This is a simple example showing how to write a string to a file.";
 	f = fopen("/tmp/fileTest","wt");
 	if ( f == NULL)
 		return 1;
-	fprintf(f,"%s\n",tmpBuf);
+	fprintf(f,"%s\n", str);
 	fflush(f);
 	fclose(f);
 	return 0;
