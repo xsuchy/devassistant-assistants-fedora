@@ -22,7 +22,7 @@ int main(int argc, char *argv[])
     struct sockaddr_in serv_addr, cli_addr;
     int n;
     if (argc < 2) {
-        fprintf(stderr,"ERROR, no port provided\n");
+        fprintf(stderr, "ERROR, no port provided\n");
         exit(1);
     }
     sockfd = socket(AF_INET, SOCK_STREAM, 0);
@@ -36,7 +36,7 @@ int main(int argc, char *argv[])
     if (bind(sockfd, (struct sockaddr *) &serv_addr,
                 sizeof(serv_addr)) < 0)
         error("ERROR on binding");
-    listen(sockfd,5);
+    listen(sockfd, 5);
     clilen = sizeof(cli_addr);
     newsockfd = accept(sockfd,
             (struct sockaddr *) &cli_addr,
@@ -44,10 +44,10 @@ int main(int argc, char *argv[])
     if (newsockfd < 0)
         error("ERROR on accept");
     memset(buffer, 0, 256);
-    n = read(newsockfd,buffer,255);
+    n = read(newsockfd, buffer, 255);
     if (n < 0) error("ERROR reading from socket");
-    printf("Here is the message: %s\n",buffer);
-    n = write(newsockfd,"I got your message",18);
+    printf("Here is the message: %s\n", buffer);
+    n = write(newsockfd, "I got your message", 18);
     if (n < 0) error("ERROR writing to socket");
     close(newsockfd);
     close(sockfd);
