@@ -27,7 +27,7 @@ int readFile()
 		return 1;
 	fseek (f, 0, SEEK_END);
 	lSize = ftell(f);
-	printf("Length of file is: %d\n",lSize);
+	printf("Length of file is: %ld\n",lSize);
 	fseek (f, 0, SEEK_SET);
 	tmpBuf = (char *)malloc(sizeof(char)*lSize);
 	size_t n = fread(tmpBuf,1,lSize,f);
@@ -37,7 +37,7 @@ int readFile()
 	}
 	else
 	{
-		printf("Reading failed %d\n",n);
+		printf("Reading failed %zd\n",n);
 		return 1;
 	}
 	free(tmpBuf);
