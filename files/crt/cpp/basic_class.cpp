@@ -1,13 +1,15 @@
 #include "basic_class.h"
+#include <iostream>
+
+using namespace std;
 
 BankAccount::BankAccount(string bankName, string bankCurrency, long bankDeposit)
+  : name(bankName), currency(bankCurrency), deposit(bankDeposit)
 {
-    name = bankName;
-    currency = bankCurrency;
-    deposit = bankDeposit;
 };
 
-BankAccount::~BankAccount(){
+BankAccount::~BankAccount()
+{
 //This can be used for closing threads
 //or for closing server connection
 }

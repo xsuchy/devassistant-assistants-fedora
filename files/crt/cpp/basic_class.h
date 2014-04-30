@@ -1,20 +1,24 @@
-#include <iostream>
+#ifndef BASIC_CLASS_H
+#define BASIC_CLASS_H
+
 #include <string>
-using namespace std;
 
-class BankAccount {
+class BankAccount
+{
     public:
-        BankAccount(string,string,long);
+        BankAccount(std::string, std::string, long);
         ~BankAccount();
-        string GetName() const { return name; }
-        string GetCurrency() const { return currency; }
+        std::string GetName() const { return name; }
+        std::string GetCurrency() const { return currency; }
         long GetDeposit() const { return deposit; }
-        void SetName(string bankName) { name = bankName; }
-        void SetCurrency(string bankCurrency) { currency = bankCurrency; }
+        void SetName(std::string bankName) { name = bankName; }
+        void SetCurrency(std::string bankCurrency) { currency = bankCurrency; }
         void SetDeposit(long bankDeposit) { deposit = bankDeposit; }
-    private:
-        string name;
-        string currency;
-        long deposit;
 
+    private:
+        std::string name;
+        std::string currency;
+        long deposit;
 };
+
+#endif

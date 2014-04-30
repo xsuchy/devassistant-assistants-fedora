@@ -5,7 +5,7 @@
 
 using namespace std;
 
-int writeFile()
+bool writeFile()
 {
     ofstream testFile ("/tmp/cppTestFile");
     cout << "Now we will write some text to fire /tmp/cppTestFile" << endl;
@@ -18,47 +18,46 @@ int writeFile()
     }
     else
     {
-        cout << "Unable to open file";
-        return 1;
+        cerr << "Unable to open file";
+        return false;
     }
-    return 0;
+    return true;
 }
 
-int readFile()
+bool readFile()
 {
-    string line;
     ifstream testFile ("/tmp/cppTestFile");
     cout << "Read text from file /tmp/cppTestFile" << endl;
     if(testFile.is_open())
     {
-        while (testFile.good())
+        string line;
+        while (getline(testFile,line))
         {
-            getline(testFile,line);
             cout << line << endl;
         }
-        testFile.close();
-        cout << "Reading operation was successfull" << endl;
+        cout << "Reading operation was successful" << endl;
     }
     else
     {
-        cout << "Unable to open file" << endl;
-        return 1;
+        cerr << "Unable to open file" << endl;
+        return false;
     }
-    return 0;
+    return true;
 }
 
-int main(){
+int main()
+{
 
-        if (writeFile()!=0)
-        {
-            cout << "Could create and write to file" << endl;
-            exit(1);
-        }
+    if (!writeFile())
+    {
+        cerr << "Could not create and write to file" << endl;
+        exit(1);
+    }
 
-        if(readFile()!=0)
-        {
-            cout << "Could not read from file" << endl;
-            exit(1);
-        }
+    if(!readFile())
+    {
+        cerr << "Could not read from file" << endl;
+        exit(1);
+    }
 }
        
