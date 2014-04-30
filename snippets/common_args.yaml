@@ -44,7 +44,7 @@ args:
     - -p
     - --path
     help:
-      'Specify path to you project (defaults to current working directory if not used).'
+      'Specify path to your project (defaults to current working directory if not used).'
     nargs: '?'
     default: .
     gui_hints:
