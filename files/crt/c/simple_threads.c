@@ -1,11 +1,11 @@
 #include <pthread.h>
+#include <stdio.h>
+#include <string.h>
 
 void print_message_function( void * ptr);
 void do_one_thing(int *);
 void do_another_thing(int *);
 void do_wrap_up(int , int );
-
-int r1 = 0, r2 = 0;
 
 typedef struct str_thdata
 {
@@ -13,8 +13,10 @@ typedef struct str_thdata
 	char message[100];
 } thdata;
 
-main()
+int main()
 {
+	int r1 = 0, r2 = 0;
+
 	pthread_t thread1, thread2;
 	pthread_t thread3, thread4;
 
@@ -38,6 +40,7 @@ main()
 
 	do_wrap_up(r1,r2);
 
+	return 0;
 }
 
 void do_one_thing(int *pnum_times)
@@ -58,7 +61,8 @@ void do_another_thing(int *pnum_times)
 	for(i = 0; i<4; i++)
 	{
 		printf("doing another thing\n");
-		for(j=0;j<10000;j++) x = x+i;
+		for(j=0; j<10000; j++)
+			x = x+i;
 		(*pnum_times)++;
 	}
 }
@@ -74,7 +78,7 @@ void print_message_function(void *ptr)
 {
 	thdata * data;
 	data = (thdata *) ptr;
-	printf("Thread %d says %s \n", data->thread_no,data->message);
+	printf("Thread %d says %s \n", data->thread_no, data->message);
 
 	pthread_exit(0);
 }
