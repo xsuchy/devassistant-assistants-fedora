@@ -1,4 +1,6 @@
 #include <pthread.h>
+#include <stdio.h>
+#include <string.h>
 
 void print_message_function( void * ptr);
 void do_one_thing(int *);
