@@ -1,7 +1,7 @@
 Name: cdevelopmenttool
 Version: 0.0
 Release: 0
-Summary: C Language example delivered by Development Assistant Tool
+Summary: C++ Language example delivered by Development Assistant Tool
 License: BSD and GPLv3+ and GPLv2+ and GPLv2
 Group: Applications
 Source0: %{name}-%{version}.tar.gz
