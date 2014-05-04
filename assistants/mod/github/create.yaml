@@ -26,7 +26,7 @@ run:
   - log_i: "It seems that your project doesn't have local git repo initialized. Initializing..."
   - use: git_init_add_commit.run
 - $name~: $(basename `pwd`)
-# we will use github args repeteadly, so store them in a variable
+# we will use github args repeatedly, so store them in a variable
 - $gh_args:
     login: $github_login
     reponame: $name

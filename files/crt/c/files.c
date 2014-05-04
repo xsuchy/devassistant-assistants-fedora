@@ -49,14 +49,14 @@ int main()
 	printf("Hello World\n");
 
 	if (writeFile() == 0)
-		printf("Writing to file was successfull\n");
+		printf("Writing to file was successful\n");
 	else
 	{
 		printf("Writing to file failed\n");
 		exit(1);
 	}
 	if (readFile() == 0)
-		printf("Reading from file was successfull\n");
+		printf("Reading from file was successful\n");
 	else
 	{
 		printf("Reading from file failed\n");
