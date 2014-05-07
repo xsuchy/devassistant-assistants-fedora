@@ -79,7 +79,13 @@ run:
   - cl: cp "$basename-0.0.tar.gz" ~/rpmbuild/SOURCES
   - cl: cp "$basename.spec" ~/rpmbuild/SPECS
   - cl: cd ~/rpmbuild/SPECS
-  - cl_ir: yum-builddep "~/rpmbuild/SPECS/$basename.spec" -y
+  - $builddeps~: $(rpmspec -q --buildrequires "~/rpmbuild/SPECS/$basename.spec")
+  - $missingdeps:
+  - for $d word_in $builddeps:
+    - if not $(rpm -q $d):
+      - $missingdeps: $missingdeps $d
+  - if $missingdeps:
+    - cl_ir: yum-builddep "~/rpmbuild/SPECS/$basename.spec" -y
   - log_i: 'Creating RPM from tarball'
   - cl_f: rpmbuild -ba "$basename.spec"
   - cl: cd "$dirname"
