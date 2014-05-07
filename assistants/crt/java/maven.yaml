@@ -2,7 +2,7 @@ fullname: Simple Apache Maven Project
 
 dependencies:
 - use: super.dependencies
-- rpm: ['maven-local','maven-jar-plugin','maven-clean-plugin','junit']
+- rpm: ['maven']
 
 dependencies_eclipse:
 - use: eclipse.dependencies_java
@@ -24,8 +24,6 @@ files:
     source: .classpath
   eclipseproject: &eclipseproject
     source: .eclipseproject
-  runscript: &runscript
-    source: run
   pom: &pom
     source: pom.xml
 
@@ -41,7 +39,6 @@ run:
 - cl: cd "${name}"
 - cl: cp *classpath .
 - cl: cp *eclipseproject .
-- cl: cp *runscript .
 - cl: cp *pom .
 - cl: cd *mavenexample
 - cl: cp -r ./src/ "${abspath}"
@@ -49,11 +46,8 @@ run:
 # create local git repository
 - log_i: 'Creating git repository'
 - use: git_init_add_commit.run
-# create tarball
-- log_i: 'Creating tarball'
-- cl: tar czf "${name}.tar.gz" pom.xml ./src/ run
 - log_i: 'Building project'
-- cl: mvn-local -q -o -B package
+- cl: mvn package
 - log_i: 'Done'
 - if $eclipse:
   - use: eclipse.run_java

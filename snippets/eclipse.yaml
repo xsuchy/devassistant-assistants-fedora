@@ -125,7 +125,6 @@ run_java:
   - cl: cp *dot_eclipseproject_jsf .project
 - else:
   - cl: cp *dot_eclipseproject_maven .project
-- cl: sed -i "s/<name>PROJECT_NAME</<name>$name</" .project
 - cl: cp .project "$eclipse/$name/.project"
 - cl: cp .classpath "$eclipse/$name/.classpath"
 - if $(test -e .settings/):
