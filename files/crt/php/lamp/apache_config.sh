@@ -54,6 +54,7 @@ if [ ! -f "/etc/httpd/$1" ]; then
         echo "  Require all granted" >> /tmp/$1.conf
         echo "</Directory>" >> /tmp/$1.conf
         mv /tmp/$1.conf /etc/httpd/conf.d/$1.conf
+        chcon -t httpd_config_t /etc/httpd/conf.d/$1.conf # SELinux context
         echo "Configuration file was successfuly created"
     fi
 else
@@ -72,6 +73,7 @@ if [ -f $USERDIR_CONF ]; then
         echo "Userdir public_html is enabled"
         sed -i "s|#UserDir public_html|UserDir public_html|" $USERDIR_CONF
     fi
+    setsebool httpd_enable_homedirs 1 # Necessary for LAMP to work
 fi
 
 
