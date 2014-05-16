@@ -39,6 +39,7 @@ run:
 - else:
   - cl_i: cp -r *pygtksources "$name"
 - cl: cd "$name"
+- cl: chmod +x template-gui.py
 - dda_c: .
 - if defined $vim:
   - use: vim.run
