@@ -82,7 +82,7 @@ run:
   - cl_ir: yum-builddep "~/rpmbuild/SPECS/$basename.spec" -y
   - log_i: 'Creating RPM from tarball'
   - cl_i: rpmbuild -ba "$basename.spec"
-  - cl_f: cd "$dirname"
+  - cl_i: cd "$dirname"
 - if $eclipse:
   - use: eclipse.run_c
 - if defined $github:

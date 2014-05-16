@@ -45,7 +45,7 @@ run:
 - $lowername: $dirname/$basename
 - if not $(ls "$lowername"):
   - log_i: 'Copying c++ source tree to project destination'
-  - cl_f: cp -r *cppsources "$lowername"
+  - cl_i: cp -r *cppsources "$lowername"
   - dda_c: "$lowername"
   - cl: cd "$lowername"
   - cl: sed -i "s|CDevelopmentTool|$basename|" configure.ac
@@ -56,14 +56,14 @@ run:
   - cl: cd "$lowername"
   - log_i: 'Project already exists'  
 - log_i: 'Run autoreconf'
-- cl_f: autoreconf --install
+- cl_i: autoreconf --install
 - log_i: 'Run configure script'
-- cl_f: ./configure
-- cl_f: make clean
+- cl_i: ./configure
+- cl_i: make clean
 - log_i: 'Compiling sources'
-- cl_f: make
+- cl_i: make
 - log_i: 'Run make distcheck to create a tar ball'
-- cl_f: make dist
+- cl_i: make dist
 - log_i: 'The $name/README file describes how to add and build a new C++'
 - log_i: 'source file using autotools'
 - log_i: 'More information about autotools can be found here:'
@@ -87,7 +87,7 @@ run:
   - if $missingdeps:
     - cl_ir: yum-builddep "~/rpmbuild/SPECS/$basename.spec" -y
   - log_i: 'Creating RPM from tarball'
-  - cl_f: rpmbuild -ba "$basename.spec"
+  - cl_i: rpmbuild -ba "$basename.spec"
   - cl: cd "$dirname"
 - if $eclipse:
   - use: eclipse.run_cpp

@@ -30,7 +30,7 @@ run:
   - log_e: '$name already exists, cannot proceed.'
 - cl: mkdir -p "$dirname"
 - cl: cd "$dirname"
-- cl_f: rails new "$basename" --skip-bundle
+- cl_i: rails new "$basename" --skip-bundle
 # Enable some JavaScript engine.
 - cl: sed -i "/# gem 'therubyracer', :platforms => :ruby/ s/# //" "$basename/Gemfile"
 - dda_c: $basename

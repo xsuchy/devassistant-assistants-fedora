@@ -26,4 +26,4 @@ files:
 run:
   - log_i: "Setting up VIM environment"
   - log_i: "Calling *vim_update *vimrc"
-  - cl_f: bash *vim_update *vimrc
+  - cl_i: bash *vim_update *vimrc
