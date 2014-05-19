@@ -5,9 +5,10 @@ Created on Wed Apr  3 13:16:47 2013
 @author: Petr Hracek
 """
 
-import sys
 import logging
+
 from gi.repository import Gtk
+
 
 class lastWindow(object):
     def __init__(self,  parent, secondWindow, builder):
@@ -25,9 +26,7 @@ class lastWindow(object):
         self.centerBtn.set_label("Text centered")
 
     def open_window(self, widget, data=None):
-        #logger.info("main function")
         self.lastWindow.show_all()
-
 
     def visibility_event(self, widget, data=None):
         logging.info("Visibility event")

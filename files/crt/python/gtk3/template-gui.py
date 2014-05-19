@@ -22,7 +22,6 @@
 # Authors:
 # Petr Hracek <phracek@redhat.com>
 
-import logging
 import sys
 import firstWindow
 
