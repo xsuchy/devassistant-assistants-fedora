@@ -20,8 +20,17 @@ args:
       default: $(whoami)
 
 run:
-- if $path:
-  - cl: cd "$path"
+- if not $path:
+  - $path~: $(echo $PWD)
+- $path~: $(realpath "$path")
+- if $(["$path" == $HOME]):
+  - $confirmed~:
+    - ask_confirm:
+        message: "Do you really want to upload contents of your home directory?"
+        prompt:  "Select"
+  - if not $confirmed:
+    - log_e: "Aborted by user, exiting"
+- cl: cd "$path"
 - if not $(test -e .git):
   - log_i: "It seems that your project doesn't have local git repo initialized. Initializing..."
   - use: git_init_add_commit.run
