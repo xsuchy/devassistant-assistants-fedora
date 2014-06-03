@@ -32,6 +32,8 @@ args:
       '?'
     gui_hints:
       default: $(whoami)
+    preserved:
+      'global.github_login'
 
   docker:
     flags: [--docker]
@@ -69,3 +71,4 @@ args:
     const: 3
     default: ''
     help: 'Use Python 3 instead of Python 2.'
+    preserved: 'python.py3'
