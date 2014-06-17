@@ -74,4 +74,4 @@ run:
   - cl: cd "$homedir/public_html/$basename"
   - log_i: "Push on GitHub repository"
   - github: create_and_push
-- log_i: "Web page: http://localhost/$name"
+- log_i: "Web page: http://localhost/$basename"
