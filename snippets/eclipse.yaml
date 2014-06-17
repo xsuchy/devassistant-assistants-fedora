@@ -27,6 +27,8 @@ args:
     gui_hints:
       type: path
       default: ~/workspace
+    preserved:
+      'global.eclipse_workspace_dir'
 
 files:
   dot_eclipseproject_c: &dot_eclipseproject_c
