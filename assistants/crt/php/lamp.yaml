@@ -50,8 +50,7 @@ run:
 - $basename~: $(basename "$name")
 - $homedir~: $(echo ~)
 - if not $(ls "$homedir/public_html/$basename"):
-  - log_i: 'Copying AMP source tree to project destination'
-  - cl: chmod 755 $homedir
+  - log_i: "Copying AMP source tree to $homedir/public_html/$basename"
   - cl_ir: "bash *lamp_config $basename $homedir"
   - if defined $rootdbpwd:
     - cl_i: php *create_db $rootdbpwd
@@ -65,7 +64,7 @@ run:
   - cl_i: pwd
 - else:
   - cl_i: cd "$homedir/public_html/$basename"
-  - log_i: 'Project already exists'  
+  - log_i: 'Project already exists'
 - if defined $vim:
   - use: vim.run
 - if $eclipse:
@@ -74,4 +73,5 @@ run:
   - cl: cd "$homedir/public_html/$basename"
   - log_i: "Push on GitHub repository"
   - github: create_and_push
+- log_i: "Project location: $homedir/public_html/$basename"
 - log_i: "Web page: http://localhost/$basename"
