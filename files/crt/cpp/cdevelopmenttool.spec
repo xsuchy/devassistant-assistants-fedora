@@ -8,8 +8,6 @@ Source0: %{name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildRequires: libtool
 Requires: gcc-c++
-BuildRequires: autoconf
-BuildRequires: automake
 
 %description
 This is sample spec file created on the base of c++ binary packages
