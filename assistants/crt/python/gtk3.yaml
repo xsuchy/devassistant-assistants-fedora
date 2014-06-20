@@ -31,14 +31,14 @@ files:
     source: .
 
 run:
-- $dirname~: $(dirname "$name")
-- $basename~: $(basename "$name")
-- log_i: 'Creating GTK+ 3 project $basename in $dirname ...'
-- if $(test -e "$name"):
-  - log_e: '$name already exists, cannot proceed.'
-- else:
-  - cl_i: cp -r *pygtksources "$name"
-- cl: cd "$name"
+- setup_project_dir:
+    from: $name
+    on_existing: fail
+    create_topdir: normalized
+    topdir_normalized_var: basename
+- log_i: 'Creating GTK+ 3 project $basename in $contdir ...'
+- cl_i: cp -r *pygtksources "$basename"
+- cl: cd "$basename"
 - cl: chmod +x template-gui.py
 - dda_c: .
 - if defined $vim:

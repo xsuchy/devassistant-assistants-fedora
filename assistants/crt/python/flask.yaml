@@ -43,11 +43,12 @@ files:
     source: manage.py
 
 run:
-- $dirname~: $(dirname "$name")
-- $basename~: $(basename "$name")
-- if $(test -e "$name"):
-  - log_e: '$name already exists, cannot proceed.'
-- cl: mkdir -p "$dirname"
+- setup_project_dir:
+    from: $name
+    on_existing: fail
+    create_topdir: normalized
+    contdir_var: dirname
+    topdir_normalized_var: basename
 - cl: cd "$dirname"
 - if $venv:
   - cl_i: virtualenv "$basename"
