@@ -52,11 +52,9 @@ run:
 - setup_project_dir:
     from: $name
     on_existing: fail
-    create_topdir: normalized
+    create_topdir: False
     contdir_var: dirname
     topdir_normalized_var: basename
-
-- cl: cd "$dirname"
 
 - use: self.run_startproject
 - use: self.run_modify_settings
