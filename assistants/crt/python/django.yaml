@@ -56,6 +56,8 @@ run:
     contdir_var: dirname
     topdir_normalized_var: basename
 
+- cl: cd "$dirname"
+
 - use: self.run_startproject
 - use: self.run_modify_settings
 
