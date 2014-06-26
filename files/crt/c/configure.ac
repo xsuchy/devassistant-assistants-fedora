@@ -1,7 +1,7 @@
 #This line defines how what name will have output tarball
 AC_INIT([CDevelopmentTool],[0.0])
 #this line defines what compilation flags will be used
-AM_INIT_AUTOMAKE([-Wall -Werror])
+AM_INIT_AUTOMAKE
 # DEFINE YOUR OWN HEADERS CHECK - DO NOT DELETE THIS LINE
 #this line defines what libraries should be used during building
 AC_CHECK_LIB([pthread],[pthread_create])
