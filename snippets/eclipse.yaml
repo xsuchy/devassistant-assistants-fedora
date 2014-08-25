@@ -76,10 +76,8 @@ run_c:
 - else:
   - log_i: 'Project was already imported into eclipse environment'
 - cl: cd ../
-- cl: eclipse -nosplash -application org.eclipse.cdt.managedbuilder.core.headlessbuild -import "$basename" -data "$eclipse"
+- use: eclipse.run_register_project
 - cl: cd "$basename"
-- log_i: 'Import to Eclipse is done.'
-- log_i: 'Start eclipse for developping.'
 
 run_cpp:
 - $basename~: $(basename "$name")
@@ -99,10 +97,8 @@ run_cpp:
 - else:
   - log_i: 'Project was already imported into eclipse environment'
 - cl: cd ../
-- cl: eclipse -nosplash -application org.eclipse.cdt.managedbuilder.core.headlessbuild -import "$basename" -data "$eclipse"
+- use: eclipse.run_register_project
 - cl: cd "$basename"
-- log_i: 'Import to Eclipse is done.'
-- log_i: 'Start eclipse for developping.'
 
 run_python:
 - $basename~: $(basename "$name")
@@ -116,9 +112,8 @@ run_python:
 - cl: sed -i "s|NAME|$basename|" .project
 - cl: sed -i "s|NAME|$basename|" .pydevproject
 - cl: cd ../
-- cl: eclipse -nosplash -application org.eclipse.cdt.managedbuilder.core.headlessbuild -import "$basename" -data "$eclipse"
+- use: eclipse.run_register_project
 - cl: cd "$basename"
-- log_i: 'Registered as Eclipse project.'
 
 run_java:
 - log_i: 'Creating eclipse project from command line'
@@ -149,6 +144,13 @@ run_php:
 - else:
   - log_i: 'Project was already imported into eclipse environment'
 - cl: cd ../
-- cl: eclipse -nosplash -application org.eclipse.cdt.managedbuilder.core.headlessbuild -import "$basename" -data "$eclipse"
+- use: eclipse.run_register_project
 - cl: cd "$basename"
-- log_i: 'Registered as Eclipse project ...'
+
+run_register_project:
+- if not $(pgrep -x eclipse): # Detection of workspace lock can't be implemented right now due to Ecl. bug 80734
+  - cl: eclipse -nosplash -application org.eclipse.cdt.managedbuilder.core.headlessbuild -import "$basename" -data "$eclipse"
+  - log_i: 'Registered as Eclipse project ...'
+- else:
+  - log_w: 'Workspace in use, project will not be imported to Eclipse.'
+  - log_w: 'To import manually, exit Eclipse and run DevAssistant -> Modify -> Eclipse import.'

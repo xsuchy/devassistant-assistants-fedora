@@ -49,5 +49,5 @@ run:
 - use: git_init_add_commit.run
 - if defined $github:
   - github: create_and_push
-- log_i: 'GTK+ 3 project $basename in $dirname has been created.'
+- log_i: 'GTK+ 3 project $basename in $contdir has been created.'
 - log_i: 'To run the application use: ./template-gui.py'
