@@ -1,4 +1,4 @@
-name: Run a Development Container
+fullname: Run a Development Container
 description: Runs a Docker container for your project, mounting your source code in. Let this run while you're developing.
 
 args:
