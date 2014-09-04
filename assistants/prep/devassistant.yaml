@@ -14,7 +14,7 @@ args:
     help:
       If used, will check out DevAssistant from given URL (useful when working with fork).
     required: False
-    default: https://github.com/bkabrda/devassistant
+    default: https://github.com/devassistant/devassistant
   path:
     use: common_args
     help:

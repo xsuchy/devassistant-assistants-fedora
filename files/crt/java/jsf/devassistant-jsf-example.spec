@@ -4,7 +4,7 @@ Release:	1%{?dist}
 Summary:	Simple JavaServer Faces project
 
 License:	GPLv2+
-URL:		https://www.github.com/bkabrda/devassistant
+URL:		https://www.github.com/devassistant/devassistant
 Source0:	%{name}.tar.gz
 
 BuildArch:      noarch
