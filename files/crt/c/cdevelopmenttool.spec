@@ -25,10 +25,7 @@ make %{?_smp_mflags}
 rm -rf ${RPM_BUILD_ROOT}
 make install DESTDIR=$RPM_BUILD_ROOT
 
-install -p -m 755 -D client ${RPM_BUILD_ROOT}%{_bindir}/client
-install -p -m 755 -D server ${RPM_BUILD_ROOT}%{_bindir}/server
-install -p -m 755 -D fileOperations ${RPM_BUILD_ROOT}%{_bindir}/fileOperations
-install -p -m 755 -D simpleThread ${RPM_BUILD_ROOT}%{_bindir}/simpleThread
+install -p -m 755 -D main ${RPM_BUILD_ROOT}%{_bindir}/main
 %post
 
 %postun
@@ -41,10 +38,7 @@ rm -rf ${RPM_BUILD_ROOT}
 
 %files
 %defattr(-,root,root)
-%{_bindir}/client
-%{_bindir}/fileOperations
-%{_bindir}/server
-%{_bindir}/simpleThread
+%{_bindir}/main
 
 %define date    %(echo `LC_ALL="C" date +"%a %b %d %Y"`)
 
