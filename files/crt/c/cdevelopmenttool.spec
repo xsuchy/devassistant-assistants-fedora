@@ -1,6 +1,6 @@
 Name: cdevelopmenttool
 Version: 0.0
-Release: 0
+Release: 1
 Summary: C Language example delivered by Development Assistant Tool
 License: BSD and GPLv3+ and GPLv2+ and GPLv2
 Group: Applications
@@ -26,6 +26,7 @@ rm -rf ${RPM_BUILD_ROOT}
 make install DESTDIR=$RPM_BUILD_ROOT
 
 install -p -m 755 -D main ${RPM_BUILD_ROOT}%{_bindir}/main
+
 %post
 
 %postun
@@ -44,6 +45,6 @@ rm -rf ${RPM_BUILD_ROOT}
 
 %changelog
 
-* Fri Mar 15 2013 UserName
-- first Version
+* Fri Mar 15 2013 UserName <user@host> - 0.0-1
+- Initial version
 

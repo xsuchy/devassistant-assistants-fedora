@@ -51,6 +51,16 @@ run:
   - cl: sed -i "s|CDevelopmentTool|$basename|" configure.ac
   - cl: mv cdevelopmenttool.spec "$basename.spec"
   - cl: sed -i "s|cdevelopmenttool|$basename|" "$basename.spec"
+  - $cldate~: $(LC_ALL=C date '+%a %b %d %Y')
+  - $clname~: $(git config user.name)
+  - if not $clname:
+    - $clname~: $(python -c 'import pwd,posix; print pwd.getpwuid(posix.getuid()).pw_gecos')
+  - $clemail~: $(git config user.email)
+  - if not $clemail:
+    - $clemail1~: $(id -un)
+    - $clemail2~: $(uname -n)
+    - $clemail~: "$clemail1@$clemail1"
+  - cl: sed -i "s|Fri Mar 15 2013 UserName <user@host>|$cldate $clname <$clemail>|" "$basename.spec"
   - use: git_init_add_commit.run
 - else:
   - cl: cd "$lowername"
