@@ -25,8 +25,7 @@ make %{?_smp_mflags}
 rm -rf ${RPM_BUILD_ROOT}
 make install DESTDIR=$RPM_BUILD_ROOT
 
-install -p -m 755 -D basic_class ${RPM_BUILD_ROOT}%{_bindir}/basic_class
-install -p -m 755 -D fileOperations_cpp ${RPM_BUILD_ROOT}%{_bindir}/fileOperations_cpp
+install -p -m 755 -D main ${RPM_BUILD_ROOT}%{_bindir}/main
 %post
 
 %postun
@@ -39,8 +38,7 @@ rm -rf ${RPM_BUILD_ROOT}
 
 %files
 %defattr(-,root,root)
-%{_bindir}/fileOperations_cpp
-%{_bindir}/basic_class
+%{_bindir}/main
 
 %define date    %(echo `LC_ALL="C" date +"%a %b %d %Y"`)
 
