@@ -1,0 +1,8 @@
+dependencies:
+- rpm: ['tito', 'mock']
+
+run:
+  - cl_i: tito init
+  - log_i: 'Create first release by running: tito tag.'
+  - log_i: 'Create rpm package by running: tito build --rpm'
+  - log_i: '  or (for build from last commit): tito build --rpm --test'

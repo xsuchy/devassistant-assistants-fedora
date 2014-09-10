@@ -72,3 +72,12 @@ args:
     default: ''
     help: 'Use Python 3 instead of Python 2.'
     preserved: 'python.py3'
+
+  rpm:
+    flags:
+    - -r
+    - --rpm
+    help:
+      'This will create SPEC file and install dependencies for building RPM package.'
+    action:
+      'store_true'

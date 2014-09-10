@@ -14,6 +14,9 @@ dependencies_eclipse:
 dependencies_vim:
 - use: vim.dependencies
 
+dependencies_rpm:
+- use: tito.dependencies
+
 args:
   name:
     use: common_args
@@ -30,6 +33,9 @@ args:
   venv:
     use: common_args
 
+  rpm:
+    use: common_args
+
 files:
   gitignore: &gitignore
     source: ../.gitignore
@@ -43,6 +49,8 @@ files:
     source: README.rst
   initpy: &initpy
     source: __init__.py
+  specfile: &specfile
+    source: lib.spec
 
 run:
 - setup_project_dir:
@@ -75,6 +83,12 @@ run:
 - use: git_init_add_commit.run
 - if defined $github:
   - github: create_and_push
+- if defined $rpm:
+  - cl: cp *specfile ./$basename.spec
+  - cl: sed -i "s|NAME|$basename|" ./$basename.spec
+  - cl: git add ./$basename.spec
+  - cl: git commit -m 'Adding initial spec file'
+  - use: tito.run
 - log_i: 'Library project $basename in $dirname has been created.'
 - if $venv:
   - log_i: 'To switch to the created virtualenv, use "source ${dirname}/${basename}/bin/activate"'
