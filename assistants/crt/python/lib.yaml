@@ -41,6 +41,8 @@ files:
     source: MANIFEST.in
   readmerst: &readmerst
     source: README.rst
+  initpy: &initpy
+    source: __init__.py
 
 run:
 - setup_project_dir:
@@ -57,7 +59,7 @@ run:
 - cl: mkdir -p "$basename/$basename" # create the dir holding the lib and inside it another dir for actual Python files
 - cl: cd "$basename"
 - dda_c: .
-- cl: touch "$basename/__init__.py"
+- cl: cp *initpy "$basename"
 - cl: cp *license .
 - cl: cp *manifestin .
 - cl: cp *readmerst .
@@ -66,6 +68,7 @@ run:
 - cl: sed -i "s|NAME|$basename|" setup.py
 - if defined $vim:
   - use: vim.run
+  - cl: echo '# vim:ts=4:sw=4:et' >> "$basename/__init__.py"
 - if $eclipse:
   - use: eclipse.run_python
 - cl: cp *gitignore .
